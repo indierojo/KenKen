@@ -13,7 +13,7 @@ namespace KenKenBuilder
         private const ushort SubtractionThreeGroup = 6;
         private const ushort MultiplicationTwentyFourGroup = 7;
 
-        public Cell[,] Build(DifficultyLevel difficultyLevel, GridSize gridSize)
+        public Puzzle Build(DifficultyLevel difficultyLevel, GridSize gridSize)
         {
             if (gridSize != GridSize.FourByFour)
             {
@@ -24,14 +24,15 @@ namespace KenKenBuilder
             {
                 throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenPuzzleBuilder only supports easy puzzles.");
             }
-
-            return new[,]
+            var cells = new[,]
             {
                 {EmptyCell(NoOperationFourGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(MultiplicationNineGroup)},
                 {EmptyCell(MultiplicationSixGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(AdditionThreeGroup)},
                 {EmptyCell(MultiplicationSixGroup), EmptyCell(SubtractionThreeGroup), EmptyCell(SubtractionThreeGroup), EmptyCell(AdditionThreeGroup)},
                 {EmptyCell(MultiplicationSixGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup)}
             };
+
+            return new Puzzle(cells);
         }
 
         private Cell EmptyCell(ushort groupNumber)
