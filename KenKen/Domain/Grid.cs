@@ -2,11 +2,11 @@
 {
     public class Grid
     {
-        public Grid(int size)
+        public Grid(Cell[,] cells)
         {
-            GridCells = new Cell[size, size];
+            GridCells = cells;
         }
 
-        public Cell[,] GridCells { get; private set; }
+        public Cell[,] GridCells { get; set; }
     }
 }
