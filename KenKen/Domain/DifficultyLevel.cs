@@ -1,7 +1,10 @@
-﻿namespace KenKenBuilder
+﻿namespace Domain
 {
-    internal enum DifficultyLevel
+    public enum DifficultyLevel
     {
-
+        Easy,
+        Medium,
+        Hard,
+        VeryHard
     }
 }
