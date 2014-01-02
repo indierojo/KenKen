@@ -2,7 +2,7 @@
 
 namespace KenKenBuilder
 {
-    interface IKenKenPuzzleBuilder
+    public interface IKenKenPuzzleBuilder
     {
         Puzzle Build(DifficultyLevel difficultyLevel, GridSize gridSize);
     }
