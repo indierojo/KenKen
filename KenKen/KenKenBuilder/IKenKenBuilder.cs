@@ -4,6 +4,6 @@ namespace KenKenBuilder
 {
     interface IKenKenBuilder
     {
-        Grid Build(DifficultyLevel difficultyLevel, int gridSize);
+        Cell[,] Build(DifficultyLevel difficultyLevel, int gridSize);
     }
 }
