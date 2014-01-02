@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenWebapp", "KenKenWebapp\KenKenWebapp.csproj", "{BF732FC5-321D-4AC0-A2F1-E20BFFD02409}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenWebapp.Tests", "KenKenWebapp.Tests\KenKenWebapp.Tests.csproj", "{0BF639D9-15FE-473B-85FA-E44189100AC5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6FFD1004-75EF-4DB7-A65D-1EFE11F8163A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenBuilder", "KenKenBuilder\KenKenBuilder.csproj", "{13AE6EFA-F00C-446B-AD0E-357A23669D38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenWebapp", "KenKenWebapp\KenKenWebapp.csproj", "{46FC01B7-90E6-4D83-BF32-C211A2A51E2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF732FC5-321D-4AC0-A2F1-E20BFFD02409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF732FC5-321D-4AC0-A2F1-E20BFFD02409}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF732FC5-321D-4AC0-A2F1-E20BFFD02409}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF732FC5-321D-4AC0-A2F1-E20BFFD02409}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BF639D9-15FE-473B-85FA-E44189100AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BF639D9-15FE-473B-85FA-E44189100AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF639D9-15FE-473B-85FA-E44189100AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{13AE6EFA-F00C-446B-AD0E-357A23669D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13AE6EFA-F00C-446B-AD0E-357A23669D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13AE6EFA-F00C-446B-AD0E-357A23669D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46FC01B7-90E6-4D83-BF32-C211A2A51E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46FC01B7-90E6-4D83-BF32-C211A2A51E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46FC01B7-90E6-4D83-BF32-C211A2A51E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46FC01B7-90E6-4D83-BF32-C211A2A51E2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
