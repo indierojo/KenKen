@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="IKenKenBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleKenKenBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
