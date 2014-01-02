@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Domain;
+using Domain.Operations;
 
 namespace KenKenBuilder
 {
@@ -24,6 +26,18 @@ namespace KenKenBuilder
             {
                 throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenPuzzleBuilder only supports easy puzzles.");
             }
+
+            var groups = new List<GroupDefinition>
+            {
+                new GroupDefinition(NoOperationFourGroup, new NoOp(), 4),
+                new GroupDefinition(DivisionTwoGroup, new Division(), 2),
+                new GroupDefinition(MultiplicationNineGroup, new Multiplication(), 9),
+                new GroupDefinition(MultiplicationSixGroup, new Multiplication(), 6),
+                new GroupDefinition(AdditionThreeGroup, new Addition(), 3),
+                new GroupDefinition(SubtractionThreeGroup, new Subtraction(), 3),
+                new GroupDefinition(MultiplicationTwentyFourGroup, new Multiplication(), 24),
+            };
+
             var cells = new[,]
             {
                 {EmptyCell(NoOperationFourGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(MultiplicationNineGroup)},
@@ -44,7 +58,7 @@ namespace KenKenBuilder
             // 3 1 4 2
             // 1 3 2 4
 
-            return new Puzzle(cells);
+            return new Puzzle(cells, groups);
         }
 
         private Cell EmptyCell(ushort groupNumber)
