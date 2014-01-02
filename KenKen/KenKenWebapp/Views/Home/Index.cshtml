@@ -10,7 +10,7 @@
             <tr>
                 @for (var y = 0; y < Model.Puzzle.GetGridDimensions(); y++)
                 {
-                    <td class="kenken-cell">
+                    <td class="kenken-cell group-@Model.Puzzle.GridCells[x, y].Group">
                         <div class="kenken-group-label">@Model.Puzzle.Groups[Model.Puzzle.GridCells[x, y].Group]</div>
                     </td>
                 }

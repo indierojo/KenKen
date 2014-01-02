@@ -46,16 +46,45 @@ input[type="checkbox"].input-validation-error {
 }
 
 .kenken-cell {
+    
     border: 1px solid black;
     position: relative;
     height: 100px;
     width: 100px;
 }
 
+.group-1 {
+    background-color: orange
+}
+
+.group-2 {
+    background-color: yellowgreen
+}
+
+.group-3 {
+    background-color: aquamarine
+}
+
+.group-4 {
+    background-color: cadetblue
+}
+
+.group-5 {
+    background-color: darksalmon
+}
+
+.group-6 {
+    background-color: orchid
+}
+
+.group-7 {
+    background-color: slateblue
+}
+
 .kenken-group-label {
     position: absolute;
     font-size: smaller;
-    color: darkgray; 
+    color: black; 
     top: 0;
     left: 0;
 }
