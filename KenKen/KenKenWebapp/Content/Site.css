@@ -40,3 +40,22 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+#puzzle {
+    margin-top: 40px;
+}
+
+.kenken-cell {
+    border: 1px solid black;
+    position: relative;
+    height: 100px;
+    width: 100px;
+}
+
+.kenken-group-label {
+    position: absolute;
+    font-size: smaller;
+    color: darkgray; 
+    top: 0;
+    left: 0;
+}
