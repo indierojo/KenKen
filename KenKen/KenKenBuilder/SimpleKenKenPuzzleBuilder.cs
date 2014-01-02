@@ -32,6 +32,18 @@ namespace KenKenBuilder
                 {EmptyCell(MultiplicationSixGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup)}
             };
 
+            // Puzzle
+            // 4.  2/  9x  9x
+            // 6x  2/  9x  3+
+            // 6x  3-  3-  3+
+            // 6x  24x 24x 24x
+
+            // Solution
+            // 4 2 1 3
+            // 2 4 3 1
+            // 3 1 4 2
+            // 1 3 2 4
+
             return new Puzzle(cells);
         }
 
