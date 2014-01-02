@@ -47,6 +47,7 @@
     <Compile Include="Operations\Addition.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="DifficultyLevel.cs" />
+    <Compile Include="GroupDefinition.cs" />
     <Compile Include="Operations\OperationType.cs" />
     <Compile Include="Puzzle.cs" />
     <Compile Include="GridSize.cs" />
