@@ -13,11 +13,11 @@ namespace KenKenBuilder
         private const ushort SubtractionThreeGroup = 6;
         private const ushort MultiplicationTwentyFourGroup = 7;
 
-        public Cell[,] Build(DifficultyLevel difficultyLevel, int gridSize)
+        public Cell[,] Build(DifficultyLevel difficultyLevel, GridSize gridSize)
         {
-            if (gridSize < 4 || gridSize > 4)
+            if (gridSize != GridSize.FourByFour)
             {
-                throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenBuilder only supports small grids.");
+                throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenBuilder only supports 4x4 grids.");
             }
 
             if (difficultyLevel != DifficultyLevel.Easy)
