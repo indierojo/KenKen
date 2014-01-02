@@ -2,7 +2,7 @@
 
 namespace KenKenBuilder
 {
-    interface IKenKenBuilder
+    interface IKenKenPuzzleBuilder
     {
         Cell[,] Build(DifficultyLevel difficultyLevel, GridSize gridSize);
     }

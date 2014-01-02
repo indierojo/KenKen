@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="DifficultyLevel.cs" />
-    <Compile Include="Grid.cs" />
+    <Compile Include="Puzzle.cs" />
     <Compile Include="GridSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,8 +1,8 @@
 ﻿namespace Domain
 {
-    public class Grid
+    public class Puzzle
     {
-        public Grid(Cell[,] cells)
+        public Puzzle(Cell[,] cells)
         {
             GridCells = cells;
         }

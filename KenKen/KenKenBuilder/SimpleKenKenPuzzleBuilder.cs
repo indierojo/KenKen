@@ -3,7 +3,7 @@ using Domain;
 
 namespace KenKenBuilder
 {
-    public class SimpleKenKenBuilder : IKenKenBuilder
+    public class SimpleKenKenPuzzleBuilder : IKenKenPuzzleBuilder
     {
         private const ushort NoOperationFourGroup = 1;
         private const ushort DivisionTwoGroup = 2;
@@ -17,12 +17,12 @@ namespace KenKenBuilder
         {
             if (gridSize != GridSize.FourByFour)
             {
-                throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenBuilder only supports 4x4 grids.");
+                throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenPuzzleBuilder only supports 4x4 grids.");
             }
 
             if (difficultyLevel != DifficultyLevel.Easy)
             {
-                throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenBuilder only supports easy puzzles.");
+                throw new ArgumentOutOfRangeException("gridSize", "SimpleKenKenPuzzleBuilder only supports easy puzzles.");
             }
 
             return new[,]
