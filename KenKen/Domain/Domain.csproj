@@ -39,8 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IOperation.cs" />
+    <Compile Include="Operations\Division.cs" />
+    <Compile Include="Operations\Multiplication.cs" />
+    <Compile Include="Operations\NoOp.cs" />
+    <Compile Include="Operations\Subtraction.cs" />
+    <Compile Include="Operations\Addition.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="DifficultyLevel.cs" />
+    <Compile Include="Operations\OperationType.cs" />
     <Compile Include="Puzzle.cs" />
     <Compile Include="GridSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
