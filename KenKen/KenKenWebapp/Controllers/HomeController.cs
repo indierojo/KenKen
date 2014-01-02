@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Domain;
+using KenKenBuilder;
+using KenKenWebapp.Models;
 
 namespace KenKenWebapp.Controllers
 {
@@ -10,7 +9,8 @@ namespace KenKenWebapp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var puzzle = new SimpleKenKenPuzzleBuilder().Build(DifficultyLevel.Easy, GridSize.FourByFour);
+            return View(new PuzzleModel(puzzle));
         }
 
         public ActionResult About()
