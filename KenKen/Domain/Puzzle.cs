@@ -8,7 +8,7 @@ namespace Domain
         public readonly Dictionary<ushort, GroupDefinition> Groups;
         private ushort? _gridDimensions;
 
-        public Puzzle(Cell[,] cells, IEnumerable<GroupDefinition> groups)
+        public Puzzle(Cell[][] cells, IEnumerable<GroupDefinition> groups)
         {
             Groups = groups.ToDictionary(g => g.GroupNumber);
             GridCells = cells;
@@ -24,6 +24,6 @@ namespace Domain
             return _gridDimensions.Value;
         }
 
-        public Cell[,] GridCells { get; set; }
+        public Cell[][] GridCells { get; set; }
     }
 }
