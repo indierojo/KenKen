@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Domain;
 using KenKenBuilder;
 
 namespace KenKenApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:59519", headers: "*", methods: "*")]
     public class PuzzleController : ApiController
     {
         // GET api/puzzle
