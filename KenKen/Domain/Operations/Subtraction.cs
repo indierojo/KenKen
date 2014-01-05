@@ -5,19 +5,19 @@ namespace Domain.Operations
 {
     public class Subtraction : IOperation
     {
-        public OperationType GetOperationType()
+        public string Symbol
         {
-            return OperationType.Subtraction;
+            get { return "-"; }
+        }
+
+        public OperationType Type
+        {
+            get { return OperationType.Subtraction; }
         }
 
         public uint DoOperationOn(IEnumerable<ushort> values)
         {
             return values.OrderByDescending(i => i).Aggregate((a, b) => (ushort)(a - b));
-        }
-
-        public string GetSymbol()
-        {
-            return "-";
         }
     }
 }

@@ -1,29 +1,32 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Domain
 {
+    [DataContract]
     public class Puzzle
     {
-        public readonly Dictionary<ushort, GroupDefinition> Groups;
+        [DataMember]
+        public readonly IEnumerable<GroupDefinition> Groups;
         private ushort? _gridDimensions;
 
-        public Puzzle(Cell[,] cells, IEnumerable<GroupDefinition> groups)
+        public Puzzle(Cell[][] cells, IEnumerable<GroupDefinition> groups)
         {
-            Groups = groups.ToDictionary(g => g.GroupNumber);
-            GridCells = cells;
+            Groups = groups;
+            Grid = new Grid(cells);
         }
 
         public ushort GetGridDimensions()
         {
             if (!_gridDimensions.HasValue)
             {
-                _gridDimensions = (ushort) GridCells.GetLength(0);
+                _gridDimensions = (ushort) Grid.Cells.GetLength(0);
             }
 
             return _gridDimensions.Value;
         }
 
-        public Cell[,] GridCells { get; set; }
+        [DataMember]
+        public Grid Grid { get; set; }
     }
 }

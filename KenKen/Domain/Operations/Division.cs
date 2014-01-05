@@ -5,19 +5,19 @@ namespace Domain.Operations
 {
     public class Division : IOperation
     {
-        public OperationType GetOperationType()
+        public string Symbol
         {
-            return OperationType.Division;
+            get { return "/"; }
+        }
+
+        public OperationType Type
+        {
+            get { return OperationType.Division; }
         }
 
         public uint DoOperationOn(IEnumerable<ushort> values)
         {
             return values.OrderByDescending(i => i).Aggregate((a, b) => (ushort)(a / b));
-        }
-
-        public string GetSymbol()
-        {
-            return "/";
         }
     }
 }

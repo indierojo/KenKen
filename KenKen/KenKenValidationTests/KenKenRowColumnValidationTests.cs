@@ -72,12 +72,12 @@ namespace KenKenValidationTests
         {
             var groups = GetTestGroupDefinitions();
 
-            var cells = new[,]
+            var cells = new[]
             {
-                {CellWithValue(1, 4), CellWithValue(2, 2), CellWithValue(3, 1), CellWithValue(3, 3)},
-                {CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
-                {CellWithValue(4, 3), CellWithValue(6, 1), CellWithValue(6, 4), CellWithValue(5, 2)},
-                {CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
+                new[]{CellWithValue(1, 4), CellWithValue(2, 2), CellWithValue(3, 1), CellWithValue(3, 3)},
+                new[]{CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
+                new[]{CellWithValue(4, 3), CellWithValue(6, 1), CellWithValue(6, 4), CellWithValue(5, 2)},
+                new[]{CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
             };
 
             return new Puzzle(cells, groups);
@@ -87,12 +87,12 @@ namespace KenKenValidationTests
         {
             var groups = GetTestGroupDefinitions();
 
-            var cells = new[,]
+            var cells = new[]
             {
-                {CellWithValue(1, 4), CellWithValue(2, 4), CellWithValue(3, 1), CellWithValue(3, 3)},
-                {CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
-                {CellWithValue(4, 3), CellWithValue(6, 1), CellWithValue(6, 4), CellWithValue(5, 2)},
-                {CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
+                new[]{CellWithValue(1, 4), CellWithValue(2, 4), CellWithValue(3, 1), CellWithValue(3, 3)},
+                new[]{CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
+                new[]{CellWithValue(4, 3), CellWithValue(6, 1), CellWithValue(6, 4), CellWithValue(5, 2)},
+                new[]{CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
             };
 
             return new Puzzle(cells, groups);
@@ -102,12 +102,12 @@ namespace KenKenValidationTests
         {
             var groups = GetTestGroupDefinitions();
 
-            var cells = new[,]
+            var cells = new[]
             {
-                {CellWithValue(1, 4), CellWithValue(2, 2), CellWithValue(3, 1), CellWithValue(3, 3)},
-                {CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
-                {CellWithValue(4, 3), CellWithValue(6, 2), CellWithValue(6, 4), CellWithValue(5, 2)},
-                {CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
+                new[]{CellWithValue(1, 4), CellWithValue(2, 2), CellWithValue(3, 1), CellWithValue(3, 3)},
+                new[]{CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
+                new[]{CellWithValue(4, 3), CellWithValue(6, 2), CellWithValue(6, 4), CellWithValue(5, 2)},
+                new[]{CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
             };
 
             return new Puzzle(cells, groups);
@@ -117,13 +117,12 @@ namespace KenKenValidationTests
         {
             var groups = GetTestGroupDefinitions();
 
-            var cells = new[,]
+            var cells = new[]
             {
-
-                {CellWithValue(1, 0), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(3, 4)},
-                {CellWithValue(4, 4), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(5, 4)},
-                {CellWithValue(4, 4), CellWithValue(6, 4), CellWithValue(6, 4), CellWithValue(5, 4)},
-                {CellWithValue(4, 4), CellWithValue(7, 4), CellWithValue(7, 4), CellWithValue(7, 4)}
+                new[]{CellWithValue(1, 0), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(3, 4)},
+                new[]{CellWithValue(4, 4), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(5, 4)},
+                new[]{CellWithValue(4, 4), CellWithValue(6, 4), CellWithValue(6, 4), CellWithValue(5, 4)},
+                new[]{CellWithValue(4, 4), CellWithValue(7, 4), CellWithValue(7, 4), CellWithValue(7, 4)}
             };
 
             return new Puzzle(cells, groups);
@@ -133,13 +132,12 @@ namespace KenKenValidationTests
         {
             var groups = GetTestGroupDefinitions();
 
-            var cells = new[,]
+            var cells = new[]
             {
-
-                {CellWithValue(1, 100), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(3, 4)},
-                {CellWithValue(4, 4), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(5, 4)},
-                {CellWithValue(4, 4), CellWithValue(6, 4), CellWithValue(6, 4), CellWithValue(5, 4)},
-                {CellWithValue(4, 4), CellWithValue(7, 4), CellWithValue(7, 4), CellWithValue(7, 4)}
+                new[]{CellWithValue(1, 100), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(3, 4)},
+                new[]{CellWithValue(4, 4), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(5, 4)},
+                new[]{CellWithValue(4, 4), CellWithValue(6, 4), CellWithValue(6, 4), CellWithValue(5, 4)},
+                new[]{CellWithValue(4, 4), CellWithValue(7, 4), CellWithValue(7, 4), CellWithValue(7, 4)}
             };
 
             return new Puzzle(cells, groups);

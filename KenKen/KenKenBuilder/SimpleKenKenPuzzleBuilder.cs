@@ -38,12 +38,12 @@ namespace KenKenBuilder
                 new GroupDefinition(MultiplicationTwentyFourGroup, new Multiplication(), 24),
             };
 
-            var cells = new[,]
+            var cells = new[]
             {
-                {EmptyCell(NoOperationFourGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(MultiplicationNineGroup)},
-                {EmptyCell(MultiplicationSixGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(AdditionThreeGroup)},
-                {EmptyCell(MultiplicationSixGroup), EmptyCell(SubtractionThreeGroup), EmptyCell(SubtractionThreeGroup), EmptyCell(AdditionThreeGroup)},
-                {EmptyCell(MultiplicationSixGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup)}
+                new[]{EmptyCell(NoOperationFourGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(MultiplicationNineGroup)},
+                new[]{EmptyCell(MultiplicationSixGroup), EmptyCell(DivisionTwoGroup), EmptyCell(MultiplicationNineGroup), EmptyCell(AdditionThreeGroup)},
+                new[]{EmptyCell(MultiplicationSixGroup), EmptyCell(SubtractionThreeGroup), EmptyCell(SubtractionThreeGroup), EmptyCell(AdditionThreeGroup)},
+                new[]{EmptyCell(MultiplicationSixGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup), EmptyCell(MultiplicationTwentyFourGroup)}
             };
 
             // Puzzle

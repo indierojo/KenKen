@@ -7,12 +7,13 @@ namespace PuzzleValidator
     {
         public ValidationResult CheckForValidity(Puzzle puzzle)
         {
-            var allCells = puzzle.GridCells.Cast<Cell>().ToList();
+            var allCells = puzzle.Grid.Cells.Cast<Cell>().ToList();
 
             var groupedCells = allCells.GroupBy(c => c.Group);
+            var groupLookup = puzzle.Groups.ToDictionary(g => g.Group);
             foreach (var cellsInGroup in groupedCells)
             {
-                var group = puzzle.Groups[cellsInGroup.Key];
+                var group = groupLookup[cellsInGroup.Key];
 
                 // ReSharper disable once PossibleInvalidOperationException -- If any is null, should have returned false by now.
                 var allCellValuesInGroup = cellsInGroup.Select(x => x.Value.Value);
