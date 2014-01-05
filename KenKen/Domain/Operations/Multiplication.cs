@@ -5,19 +5,19 @@ namespace Domain.Operations
 {
     public class Multiplication : IOperation
     {
-        public OperationType GetOperationType()
+        public string Symbol
         {
-            return OperationType.Multiplication;
+            get { return "x"; }
+        }
+
+        public OperationType Type
+        {
+            get { return OperationType.Multiplication; }
         }
 
         public uint DoOperationOn(IEnumerable<ushort> values)
         {
             return values.Aggregate((a, b) => (ushort)(a * b));
-        }
-
-        public string GetSymbol()
-        {
-            return "x";
         }
     }
 }

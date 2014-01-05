@@ -5,8 +5,8 @@ namespace Domain
 {
     public interface IOperation
     {
-        OperationType GetOperationType();
+        string Symbol { get; }
+        OperationType Type { get; }
         uint DoOperationOn(IEnumerable<ushort> values);
-        string GetSymbol();
     }
 }
