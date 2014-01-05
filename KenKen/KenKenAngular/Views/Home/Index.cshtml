@@ -1,11 +1,9 @@
-﻿@Model Puzzle
-
-@{
+﻿@{
     Layout = null;
     Response.Headers["X-UA-Compatible"] = "IE=10";
 }
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="kenkenApp">
 <head>
     <meta charset="utf-8" />
     <title>My ASP.NET Angular.JS Application</title>
@@ -14,12 +12,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <p>Nothing here {{'yet' + '!'}}</p>
-    <p>Math!: {{1 + 2}}</p>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/app")
-    @Scripts.Render("~/bundles/bootstrap")
-</body>
+    <body ng-controller="kenkenApp">
+        {{puzzle}}
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/app")
+        @Scripts.Render("~/bundles/bootstrap")
+    </body>
 </html>

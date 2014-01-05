@@ -1,7 +1,7 @@
 var kenkenApp = angular.module('kenkenApp', []);
 
-kenkenApp.controller('kenkenApp', function($scope, $http) {
-    $http.get('http://localhost:59519/puzzles/easy/1').success(function(data) {
+kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
+    $http.get('http://localhost:63995/api/puzzle/').success(function (data) {
         $scope.puzzle = data;
     });
-});
+}]);
