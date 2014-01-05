@@ -11,19 +11,19 @@ namespace Domain
         public Puzzle(Cell[][] cells, IEnumerable<GroupDefinition> groups)
         {
             Groups = groups.ToDictionary(g => g.GroupNumber);
-            GridCells = cells;
+            Grid = new Grid(cells);
         }
 
         public ushort GetGridDimensions()
         {
             if (!_gridDimensions.HasValue)
             {
-                _gridDimensions = (ushort) GridCells.GetLength(0);
+                _gridDimensions = (ushort) Grid.Cells.GetLength(0);
             }
 
             return _gridDimensions.Value;
         }
 
-        public Cell[][] GridCells { get; set; }
+        public Grid Grid { get; set; }
     }
 }

@@ -18,11 +18,12 @@ namespace PuzzleValidator
             {
                 var rowTotal = 0;
                 var columnTotal = 0;
+                var cells = puzzle.Grid.Cells;
 
                 for (var y = 0u; y < gridDimensions; y++)
                 {
-                    var rowCell = puzzle.GridCells[x][y].Value;
-                    var columnCell = puzzle.GridCells[y][x].Value;
+                    var rowCell = cells[x][y].Value;
+                    var columnCell = cells[y][x].Value;
                     if (!IsValidValue(rowCell, gridDimensions))
                     {
                         return ValidationResult.Invalid(string.Format("Cell at {0},{1} has an invalid value: {2}", x + 1, y + 1, rowCell.HasValue ? rowCell.Value.ToString(CultureInfo.InvariantCulture) : "MISSING"));
