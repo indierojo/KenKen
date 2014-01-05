@@ -2,6 +2,7 @@
 {
     public enum GridSize
     {
+        Invalid = 0,
         ThreeByThree = 3,
         FourByFour = 4,
         FiveByFive = 5,
