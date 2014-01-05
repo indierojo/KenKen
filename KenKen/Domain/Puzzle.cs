@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Domain
 {
+    [DataContract]
     public class Puzzle
     {
-        public readonly Dictionary<ushort, GroupDefinition> Groups;
+        [DataMember]
+        public readonly IEnumerable<GroupDefinition> Groups;
         private ushort? _gridDimensions;
 
         public Puzzle(Cell[][] cells, IEnumerable<GroupDefinition> groups)
         {
-            Groups = groups.ToDictionary(g => g.GroupNumber);
+            Groups = groups;
             Grid = new Grid(cells);
         }
 
@@ -24,6 +26,7 @@ namespace Domain
             return _gridDimensions.Value;
         }
 
+        [DataMember]
         public Grid Grid { get; set; }
     }
 }
