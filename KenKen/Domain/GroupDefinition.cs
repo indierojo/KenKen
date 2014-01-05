@@ -7,7 +7,7 @@ namespace Domain
     {
         public GroupDefinition(ushort groupNumber, IOperation operation, ushort expectedTotal)
         {
-            GroupNumber = groupNumber;
+            Group = groupNumber;
             ExpectedTotal = expectedTotal;
             Operation = operation;
             Symbol = Operation.Symbol;
