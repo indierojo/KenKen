@@ -15,7 +15,7 @@
 
         public override string ToString()
         {
-            return ExpectedTotal + Operation.GetSymbol();
+            return ExpectedTotal + Operation.Symbol;
         }
     }
 }
