@@ -28,24 +28,16 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
                 // cell.x = x;
                 // cell.y = y;
 
-                if (x === 0) {
-                    cell.topOuterBorder = true;
-                } else if (cells[x - 1][y].Group !== cell.Group) {
+                if (x > 0 && cells[x - 1][y].Group !== cell.Group) {
                     cell.topBorder = true;
                 }
-                if (y === 0) {
-                    cell.leftOuterBorder = true;
-                } else if (cells[x][y - 1].Group !== cell.Group) {
+                if (y > 0 && cells[x][y - 1].Group !== cell.Group) {
                     cell.leftBorder = true;
                 }
-                if (y === gridSize - 1) {
-                    cell.rightOuterBorder = true;
-                } else if (cells[x][y + 1].Group !== cell.Group) {
+                if (y < gridSize - 1 && cells[x][y + 1].Group !== cell.Group) {
                     cell.rightBorder = true;
                 }
-                if (x === gridSize - 1) {
-                    cell.bottomOuterBorder = true;
-                } else if ( cells[x + 1][y].Group !== cell.Group) {
+                if (x < gridSize - 1 && cells[x + 1][y].Group !== cell.Group) {
                     cell.bottomBorder = true;
                 }
             }
@@ -54,13 +46,9 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         $scope.puzzle = data;
         $scope.getBorderClasses = function(cell) {
             return {
-                topOuterBorder: cell.topOuterBorder,
                 topBorder: cell.topBorder,
-                leftOuterBorder: cell.leftOuterBorder,
                 leftBorder: cell.leftBorder,
-                rightOuterBorder: cell.rightOuterBorder,
                 rightBorder: cell.rightBorder,
-                bottomOuterBorder: cell.bottomOuterBorder,
                 bottomBorder: cell.bottomBorder
             };
         };

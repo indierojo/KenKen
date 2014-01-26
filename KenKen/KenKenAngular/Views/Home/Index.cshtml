@@ -13,26 +13,14 @@
         .topBorder {
             border-top: 1px solid black;
         }
-        .topOuterBorder {
-            border-top: 2px solid black;
-        }
         .rightBorder {
             border-right: 1px solid black;
-        }
-        .rightOuterBorder {
-            border-right: 2px solid black;
         }
         .bottomBorder {
             border-bottom: 1px solid black;
         }
-        .bottomOuterBorder {
-            border-bottom: 2px solid black;
-        }
         .leftBorder {
             border-left: 1px solid black;
-        }
-        .leftOuterBorder {
-            border-left: 2px solid black;
         }
     </style>
     @Styles.Render("~/Content/css")
@@ -40,21 +28,22 @@
 </head>
     <body ng-controller="kenkenApp">
         <div style="width: 800px; margin: auto;">
-
-            <div style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
-                <div style="outline: 1px dotted lightgray; float: left; width: 60px; height: 60px"
-                     ng-click="editorEnabled=!editorEnabled"
-                     ng-class="getBorderClasses(cell)"
-                     ng-repeat="cell in row">
-                    <span style="color: gray;"ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
-                    <div ng-hide="editorEnabled">
-                        <span style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</span>
-                    </div>
-                    <div ng-show="editorEnabled">
-                        <input style="font-size: 24px; width: 100%;" ng-model="cell.Value">
-                    </div>
-                </div>
-            </div>
+            <table style="border: 2px solid black;">
+                <tr style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
+                    <td style="outline: 1px dotted lightgray; float: left; width: 60px; height: 60px"
+                        ng-click="editorEnabled=!editorEnabled"
+                        ng-class="getBorderClasses(cell)"
+                        ng-repeat="cell in row">
+                        <span style="color: gray;" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
+                        <div ng-hide="editorEnabled">
+                            <span style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</span>
+                        </div>
+                        <div ng-show="editorEnabled">
+                            <input style="font-size: 24px; width: 100%;" ng-model="cell.Value">
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         @Scripts.Render("~/bundles/jquery")
