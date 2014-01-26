@@ -9,11 +9,56 @@
     <title>My ASP.NET Angular.JS Application</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
+    <style>
+        .topBorder {
+            border-top: 1px solid black;
+        }
+        .topOuterBorder {
+            border-top: 2px solid black;
+        }
+        .rightBorder {
+            border-right: 1px solid black;
+        }
+        .rightOuterBorder {
+            border-right: 2px solid black;
+        }
+        .bottomBorder {
+            border-bottom: 1px solid black;
+        }
+        .bottomOuterBorder {
+            border-bottom: 2px solid black;
+        }
+        .leftBorder {
+            border-left: 1px solid black;
+        }
+        .leftOuterBorder {
+            border-left: 2px solid black;
+        }
+    </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
     <body ng-controller="kenkenApp">
-        {{puzzle}}
+        <div style="width: 800px; margin: auto;">
+
+            <div style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
+                <div style="outline: 1px dotted lightgray; float: left; width: 60px; height: 60px"
+                     ng-class="{
+                        topOuterBorder: cell.topOuterBorder,
+                        topBorder: cell.topBorder,
+                        leftOuterBorder: cell.leftOuterBorder,
+                        leftBorder: cell.leftBorder,
+                        rightOuterBorder: cell.rightOuterBorder,
+                        rightBorder: cell.rightBorder,
+                        bottomOuterBorder: cell.bottomOuterBorder,
+                        bottomBorder: cell.bottomBorder
+                     }" ng-repeat="cell in row">
+                    <span ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
+                    {{cell.Value}}
+                </div>
+            </div>
+        </div>
+
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/angular")
         @Scripts.Render("~/bundles/app")
