@@ -43,6 +43,7 @@
 
             <div style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
                 <div style="outline: 1px dotted lightgray; float: left; width: 60px; height: 60px"
+                     ng-click="editorEnabled=!editorEnabled"
                      ng-class="{
                         topOuterBorder: cell.topOuterBorder,
                         topBorder: cell.topBorder,
@@ -53,8 +54,13 @@
                         bottomOuterBorder: cell.bottomOuterBorder,
                         bottomBorder: cell.bottomBorder
                      }" ng-repeat="cell in row">
-                    <span ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
-                    {{cell.Value}}
+                    <span style="color: gray;"ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
+                    <div ng-hide="editorEnabled">
+                        <span style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</span>
+                    </div>
+                    <div ng-show="editorEnabled">
+                        <input style="font-size: 24px; width: 100%;" ng-model="cell.Value">
+                    </div>
                 </div>
             </div>
         </div>
