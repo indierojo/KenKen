@@ -52,6 +52,18 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         }
 
         $scope.puzzle = data;
+        $scope.getBorderClasses = function(cell) {
+            return {
+                topOuterBorder: cell.topOuterBorder,
+                topBorder: cell.topBorder,
+                leftOuterBorder: cell.leftOuterBorder,
+                leftBorder: cell.leftBorder,
+                rightOuterBorder: cell.rightOuterBorder,
+                rightBorder: cell.rightBorder,
+                bottomOuterBorder: cell.bottomOuterBorder,
+                bottomBorder: cell.bottomBorder
+            };
+        };
         kenkenApp.Groups = data.Groups;
     });
 }]);
