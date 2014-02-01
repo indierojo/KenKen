@@ -14,9 +14,21 @@
             width: 800px;
             margin: auto;
         }
-         .puzzleOutline {
-             border: 2px solid black;
-         }
+        .message {
+            font-size: 16px;
+        }
+        .info {
+            color: steelblue;
+        }
+        .solved {
+            color: limegreen;
+        }
+        .error {
+            color: tomato;
+        }
+        .puzzleOutline {
+            border: 2px solid black;
+        }
         .puzzleRow {
             clear: both;
         }
@@ -82,9 +94,9 @@
 </head>
     <body ng-controller="kenkenApp">
         <div id="pageWrapper">
-            <div ng-show="information">{{information}}</div>
-            <div ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
-            <div ng-show="hasErrors">Whoops! There are some issues with the puzzle!</div>
+            <div class="info message" ng-show="information">{{information}}</div>
+            <div class="solved message" ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
+            <div class="error message" ng-show="hasErrors">Whoops! There are some issues with the puzzle!</div>
             <table class="puzzleOutline">
                 <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
                     <td class="cell"
