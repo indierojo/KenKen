@@ -10,11 +10,38 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <style>
+        #pageWrapper {
+            width: 800px;
+            margin: auto;
+        }
+         .puzzleOutline {
+             border: 2px solid black;
+         }
+        .puzzleRow {
+            clear: both;
+        }
         .cell {
             outline: 1px dotted lightgray;
             float: left;
             width: 60px;
             height: 60px;
+        }
+        .groupLabel {
+            position: absolute;
+            color: gray;
+        }
+        .cellValue {
+            position: relative;
+            top: -5px;
+            text-align: center;
+            font-size: 52px;
+        }
+        .cell input {
+            font-size: 20px;
+            border: none;
+            padding-top: 15px;
+            width: 100%;
+            height: 100%;
         }
         .topBorder {
             border-top: 1px solid black;
@@ -33,9 +60,9 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
     <body ng-controller="kenkenApp">
-        <div style="width: 800px; margin: auto;">
-            <table style="border: 2px solid black;">
-                <tr style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
+        <div id="pageWrapper">
+            <table class="puzzleOutline">
+                <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
                     <td ng-repeat="cell in row"
                         ng-click="selectCell(cell)"
                         ng-class="
@@ -48,10 +75,12 @@
                         ng-switch on="isSelected(cell)"
                         class=" cell">
 
-                        <div style="position: absolute; color: gray;" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</div>
+                        <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</div>
 
-                        <input ng-switch-when="true" focus-when-selected style="font-size: 24px; width: 100%; height: 100%" ng-model="cell.Value">
-                        <div ng-switch-default style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</div>
+                        <input ng-switch-when="true" 
+                               focus-when-selected
+                               ng-model="cell.Value">
+                        <div ng-switch-default class="cellValue">{{cell.Value}}</div>
                     </td>
                 </tr>
             </table>
