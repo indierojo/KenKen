@@ -6,32 +6,32 @@ kenkenApp.config([
     }
 ]);
 kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
-    $http.get('http://localhost:63995/api/puzzle/1').success(function (data) {
+    $http.get('http://localhost:63995/api/puzzle/1').success(function(data) {
         populateCellBorderData(data);
         kenkenApp.Groups = data.Groups;
 
         $scope.puzzle = data;
-
-        $scope.selectCell = function (cell) {
-            $scope.selectedCell = cell;
-        };
-
-        $scope.isSelected = function (cell) {
-            return $scope.selectedCell === cell;
-        };
-
-        $scope.deselectAllCells = function() {
-            return $scope.selectedCell = null;
-        };
-
-        $scope.resetPuzzle = function () {
-            $scope.puzzle.Grid.Cells.forEach(function (row) {
-                row.forEach(function(cell) {
-                    cell.Value = null;
-                });
-            });
-        };
     });
+    
+    $scope.selectCell = function (cell) {
+        $scope.selectedCell = cell;
+    };
+
+    $scope.isSelected = function (cell) {
+        return $scope.selectedCell === cell;
+    };
+
+    $scope.deselectAllCells = function() {
+        return $scope.selectedCell = null;
+    };
+
+    $scope.resetPuzzle = function () {
+        $scope.puzzle.Grid.Cells.forEach(function (row) {
+            row.forEach(function(cell) {
+                cell.Value = null;
+            });
+        });
+    };
 }]);
 kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
     return function (scope, element, attrs) {
