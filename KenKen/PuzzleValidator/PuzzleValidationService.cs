@@ -12,7 +12,7 @@ namespace PuzzleValidator
             foreach (var puzzleValidator in Validators)
             {
                 var validationResult = puzzleValidator.CheckForValidity(puzzle);
-                if (!validationResult.WasSuccess)
+                if (!validationResult.WasValid)
                 {
                     return validationResult;
                 }

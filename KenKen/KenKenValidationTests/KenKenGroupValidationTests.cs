@@ -14,10 +14,10 @@ namespace KenKenValidationTests
         public void ValidationShouldFailIfOperationDoesntHaveExpectedValue()
         {
             var validationResult = PuzzleRowColumnValidation(GetBadOperationPuzzle());
-            Assert.True(validationResult.WasSuccess);
+            Assert.True(validationResult.WasValid);
             validationResult = PuzzleGroupValidation(GetBadOperationPuzzle());
 
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 
@@ -26,7 +26,7 @@ namespace KenKenValidationTests
         {
             var solvedPuzzle = GetSolvedPuzzle();
             var validationResult = PuzzleGroupValidation(solvedPuzzle);
-            Assert.True(validationResult.WasSuccess, validationResult.FailureReason ?? "");
+            Assert.True(validationResult.WasValid, validationResult.FailureReason ?? "");
         }
 
         private ValidationResult PuzzleRowColumnValidation(Puzzle puzzle)

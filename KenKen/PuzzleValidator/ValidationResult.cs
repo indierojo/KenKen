@@ -2,9 +2,9 @@
 {
     public class ValidationResult
     {
-        private ValidationResult(bool wasSuccess, string failureReason = null)
+        private ValidationResult(bool wasValid, string failureReason = null)
         {
-            WasSuccess = wasSuccess;
+            WasValid = wasValid;
             FailureReason = failureReason;
         }
 
@@ -18,7 +18,7 @@
             return new ValidationResult(false, reason);
         }
 
-        public bool WasSuccess { get; private set; }
+        public bool WasValid { get; private set; }
         public string FailureReason { get; private set; }
     }
 }
