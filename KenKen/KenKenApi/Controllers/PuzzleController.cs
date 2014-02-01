@@ -8,6 +8,8 @@ namespace KenKenApi.Controllers
 {
     public class PuzzleController : ApiController
     {
+        private static readonly int SmallTestPuzzleId = -124;
+
         // GET api/puzzle
         public IEnumerable<Puzzle> Get()
         {
@@ -17,6 +19,11 @@ namespace KenKenApi.Controllers
         // GET api/puzzle/5
         public Puzzle Get(int id)
         {
+            if (id == SmallTestPuzzleId)
+            {
+                return TinyTestPuzzleBuilder.GetTinyPuzzle();
+            }
+
             return new SimpleKenKenPuzzleBuilder().Build(DifficultyLevel.Easy, GridSize.FourByFour);
         }
 
