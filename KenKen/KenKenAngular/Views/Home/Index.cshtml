@@ -50,7 +50,7 @@
 
                         <div style="position: absolute; color: gray;" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</div>
 
-                        <input ng-switch-when="true" style="font-size: 24px; width: 100%;" ng-model="cell.Value">
+                        <input ng-switch-when="true" focus-when-selected style="font-size: 24px; width: 100%; height: 100%" ng-model="cell.Value">
                         <div ng-switch-default style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</div>
                     </td>
                 </tr>

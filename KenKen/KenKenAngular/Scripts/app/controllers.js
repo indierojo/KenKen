@@ -21,6 +21,11 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         };
     });
 }]);
+kenkenApp.directive('focusWhenSelected', function () {
+    return function (scope, element, attrs) {
+        element.select();
+    };
+});
 kenkenApp.filter('groupSymbol', function() {
     return function (groupNumber) {
         var symbol = "";
