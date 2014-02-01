@@ -23,6 +23,14 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         $scope.deselectAllCells = function() {
             return $scope.selectedCell = null;
         };
+
+        $scope.resetPuzzle = function () {
+            $scope.puzzle.Grid.Cells.forEach(function (row) {
+                row.forEach(function(cell) {
+                    cell.Value = null;
+                });
+            });
+        };
     });
 }]);
 kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
