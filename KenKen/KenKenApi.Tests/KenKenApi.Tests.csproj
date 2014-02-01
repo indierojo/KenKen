@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PuzzleControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>
@@ -101,6 +102,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{6FFD1004-75EF-4DB7-A65D-1EFE11F8163A}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KenKenApi\KenKenApi.csproj">
       <Project>{3AC787E2-450A-4D68-89F8-A307D0CB9654}</Project>
       <Name>KenKenApi</Name>

@@ -18,7 +18,7 @@ namespace KenKenValidationTests
         {
             var validPuzzle = Builder.Build(DifficultyLevel.Easy, GridSize.FourByFour);
             var validationResult = IsValidPuzzle(validPuzzle);
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 
@@ -26,7 +26,7 @@ namespace KenKenValidationTests
         public void ValidationShouldFailForDuplicateRowValues()
         {
             var validationResult = IsValidPuzzle(GetDupeRowPuzzle());
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 
@@ -34,7 +34,7 @@ namespace KenKenValidationTests
         public void ValidationShouldFailForDuplicateColumnValues()
         {
             var validationResult = IsValidPuzzle(GetDupeColumnPuzzle());
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 
@@ -42,7 +42,7 @@ namespace KenKenValidationTests
         public void ValidationShouldFailForLowValues()
         {
             var validationResult = IsValidPuzzle(GetLowNumberPuzzle());
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 
@@ -50,7 +50,7 @@ namespace KenKenValidationTests
         public void ValidationShouldFailForHighValues()
         {
             var validationResult = IsValidPuzzle(GetHighNumberPuzzle());
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 
@@ -59,14 +59,14 @@ namespace KenKenValidationTests
         {
             var solvedPuzzle = GetSolvedPuzzle();
             var validationResult = IsValidPuzzle(solvedPuzzle);
-            Assert.True(validationResult.WasSuccess, validationResult.FailureReason ?? "");
+            Assert.True(validationResult.WasValid, validationResult.FailureReason ?? "");
         }
 
         [Test]
         public void ValidationShouldFailForDuplicatedNumbersThatAddUpToExpectedTotals()
         {
             var validationResult = IsValidPuzzle(GetGoodTotalsWithDuplicatesPuzzle());
-            Assert.False(validationResult.WasSuccess);
+            Assert.False(validationResult.WasValid);
             Console.WriteLine(validationResult.FailureReason);
         }
 

@@ -173,6 +173,10 @@
       <Project>{13AE6EFA-F00C-446B-AD0E-357A23669D38}</Project>
       <Name>KenKenBuilder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PuzzleValidator\PuzzleValidator.csproj">
+      <Project>{858041A7-F791-4EC3-873D-D6A1E73B0BED}</Project>
+      <Name>PuzzleValidator</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
