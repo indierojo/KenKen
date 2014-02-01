@@ -60,6 +60,24 @@
         .leftBorder {
             border-left: 1px solid black;
         }
+
+        button {
+            border: none;
+            width: 120px;
+            height: 40px;
+            color: white;
+        }
+
+        #isValidButton {
+            margin-top: 5px;
+            outline: 1px solid limegreen;
+            background: limegreen;
+        }
+
+        #clearButton {
+            outline: 1px solid tomato;
+            background: tomato;
+        }
     </style>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -90,6 +108,10 @@
                     </td>
                 </tr>
             </table>
+
+            <button id="isValidButton">Check</button>
+            <button id="clearButton">Clear</button>
+            
         </div>
 
         @Scripts.Render("~/bundles/jquery")
