@@ -41,6 +41,8 @@ namespace KenKenValidationTests
             return groupValidator.CheckForValidity(puzzle);
         }
 
+        
+
         private Puzzle GetSolvedPuzzle()
         {
             var groups = GetTestGroupDefinitions();
@@ -90,5 +92,6 @@ namespace KenKenValidationTests
             };
             return groups;
         }
+
     }
 }

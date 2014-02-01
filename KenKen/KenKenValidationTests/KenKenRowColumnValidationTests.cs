@@ -62,6 +62,14 @@ namespace KenKenValidationTests
             Assert.True(validationResult.WasSuccess, validationResult.FailureReason ?? "");
         }
 
+        [Test]
+        public void ValidationShouldFailForDuplicatedNumbersThatAddUpToExpectedTotals()
+        {
+            var validationResult = IsValidPuzzle(GetGoodTotalsWithDuplicatesPuzzle());
+            Assert.False(validationResult.WasSuccess);
+            Console.WriteLine(validationResult.FailureReason);
+        }
+
         private ValidationResult IsValidPuzzle(Puzzle puzzle)
         {
             var rowColumnValidator = new RowAndColumnValidator();
@@ -74,10 +82,10 @@ namespace KenKenValidationTests
 
             var cells = new[]
             {
-                new[]{CellWithValue(1, 4), CellWithValue(2, 2), CellWithValue(3, 1), CellWithValue(3, 3)},
-                new[]{CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
-                new[]{CellWithValue(4, 3), CellWithValue(6, 1), CellWithValue(6, 4), CellWithValue(5, 2)},
-                new[]{CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
+                new[]{CellWithValue(4), CellWithValue(2), CellWithValue(1), CellWithValue(3)},
+                new[]{CellWithValue(2), CellWithValue(4), CellWithValue(3), CellWithValue(1)},
+                new[]{CellWithValue(3), CellWithValue(1), CellWithValue(4), CellWithValue(2)},
+                new[]{CellWithValue(1), CellWithValue(3), CellWithValue(2), CellWithValue(4)}
             };
 
             return new Puzzle(cells, groups);
@@ -89,10 +97,10 @@ namespace KenKenValidationTests
 
             var cells = new[]
             {
-                new[]{CellWithValue(1, 4), CellWithValue(2, 4), CellWithValue(3, 1), CellWithValue(3, 3)},
-                new[]{CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
-                new[]{CellWithValue(4, 3), CellWithValue(6, 1), CellWithValue(6, 4), CellWithValue(5, 2)},
-                new[]{CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(1), CellWithValue(3)},
+                new[]{CellWithValue(2), CellWithValue(4), CellWithValue(3), CellWithValue(1)},
+                new[]{CellWithValue(3), CellWithValue(1), CellWithValue(4), CellWithValue(2)},
+                new[]{CellWithValue(1), CellWithValue(3), CellWithValue(2), CellWithValue(4)}
             };
 
             return new Puzzle(cells, groups);
@@ -104,10 +112,10 @@ namespace KenKenValidationTests
 
             var cells = new[]
             {
-                new[]{CellWithValue(1, 4), CellWithValue(2, 2), CellWithValue(3, 1), CellWithValue(3, 3)},
-                new[]{CellWithValue(4, 2), CellWithValue(2, 4), CellWithValue(3, 3), CellWithValue(5, 1)},
-                new[]{CellWithValue(4, 3), CellWithValue(6, 2), CellWithValue(6, 4), CellWithValue(5, 2)},
-                new[]{CellWithValue(4, 1), CellWithValue(7, 3), CellWithValue(7, 2), CellWithValue(7, 4)}
+                new[]{CellWithValue(4), CellWithValue(2), CellWithValue(1), CellWithValue(3)},
+                new[]{CellWithValue(2), CellWithValue(4), CellWithValue(3), CellWithValue(1)},
+                new[]{CellWithValue(3), CellWithValue(2), CellWithValue(4), CellWithValue(2)},
+                new[]{CellWithValue(1), CellWithValue(3), CellWithValue(2), CellWithValue(4)}
             };
 
             return new Puzzle(cells, groups);
@@ -119,10 +127,10 @@ namespace KenKenValidationTests
 
             var cells = new[]
             {
-                new[]{CellWithValue(1, 0), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(3, 4)},
-                new[]{CellWithValue(4, 4), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(5, 4)},
-                new[]{CellWithValue(4, 4), CellWithValue(6, 4), CellWithValue(6, 4), CellWithValue(5, 4)},
-                new[]{CellWithValue(4, 4), CellWithValue(7, 4), CellWithValue(7, 4), CellWithValue(7, 4)}
+                new[]{CellWithValue(0), CellWithValue(4), CellWithValue(4), CellWithValue(4)},
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(4), CellWithValue(4)},
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(4), CellWithValue(4)},
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(4), CellWithValue(4)}
             };
 
             return new Puzzle(cells, groups);
@@ -134,33 +142,43 @@ namespace KenKenValidationTests
 
             var cells = new[]
             {
-                new[]{CellWithValue(1, 100), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(3, 4)},
-                new[]{CellWithValue(4, 4), CellWithValue(2, 4), CellWithValue(3, 4), CellWithValue(5, 4)},
-                new[]{CellWithValue(4, 4), CellWithValue(6, 4), CellWithValue(6, 4), CellWithValue(5, 4)},
-                new[]{CellWithValue(4, 4), CellWithValue(7, 4), CellWithValue(7, 4), CellWithValue(7, 4)}
+                new[]{CellWithValue(100), CellWithValue(4), CellWithValue(4), CellWithValue(4)},
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(4), CellWithValue(4)},
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(4), CellWithValue(4)},
+                new[]{CellWithValue(4), CellWithValue(4), CellWithValue(4), CellWithValue(4)}
             };
 
             return new Puzzle(cells, groups);
         }
 
-        private Cell CellWithValue(ushort groupNumber, ushort value)
+        private Puzzle GetGoodTotalsWithDuplicatesPuzzle()
         {
-            return new Cell(groupNumber, value);
+            var groups = GetTestGroupDefinitions();
+
+            var cells = new[]
+            {
+                new[] {CellWithValue(4), CellWithValue(2), CellWithValue(3), CellWithValue(1)},
+                new[] {CellWithValue(4), CellWithValue(3), CellWithValue(1), CellWithValue(2)},
+                new[] {CellWithValue(1), CellWithValue(4), CellWithValue(2), CellWithValue(3)},
+                new[] {CellWithValue(1), CellWithValue(1), CellWithValue(4), CellWithValue(4)}
+            };
+
+            return new Puzzle(cells, groups);
+        }
+
+        private Cell CellWithValue(ushort value)
+        {
+            return new Cell(1, value);
         }
 
         private static IEnumerable<GroupDefinition> GetTestGroupDefinitions()
         {
             var groups = new List<GroupDefinition>
             {
-                new GroupDefinition(1, new NoOp(), 4),
-                new GroupDefinition(2, new Division(), 2),
-                new GroupDefinition(3, new Multiplication(), 9),
-                new GroupDefinition(4, new Multiplication(), 6),
-                new GroupDefinition(5, new Addition(), 3),
-                new GroupDefinition(6, new Subtraction(), 3),
-                new GroupDefinition(7, new Multiplication(), 24),
+                new GroupDefinition(1, new Addition(), 40)
             };
             return groups;
         }
+
     }
 }
