@@ -110,6 +110,10 @@
       <Project>{3AC787E2-450A-4D68-89F8-A307D0CB9654}</Project>
       <Name>KenKenApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PuzzleValidator\PuzzleValidator.csproj">
+      <Project>{858041A7-F791-4EC3-873D-D6A1E73B0BED}</Project>
+      <Name>PuzzleValidator</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

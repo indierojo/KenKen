@@ -49,8 +49,9 @@ namespace KenKenApi.Tests.Controllers
             var incorrectSolutionValidationResult = controller.Check(SmallTestPuzzleId, incorrectSolution);
 
             // Assert
-            Assert.AreEqual(true, correctSolutionValidationResult);
-            Assert.AreEqual(false, incorrectSolutionValidationResult);
+            Assert.AreEqual(true, correctSolutionValidationResult.WasValid);
+            Assert.AreEqual(false, incorrectSolutionValidationResult.WasValid);
+            Assert.IsNotNull(incorrectSolutionValidationResult.FailureReason);
         }
     }
 }
