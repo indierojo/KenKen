@@ -78,7 +78,7 @@
                         <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</div>
 
                         <input ng-switch-when="true" 
-                               focus-when-selected
+                               ng-focus-when-selected
                                ng-model="cell.Value">
                         <div ng-switch-default class="cellValue">{{cell.Value}}</div>
                     </td>

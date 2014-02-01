@@ -21,7 +21,7 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         };
     });
 }]);
-kenkenApp.directive('focusWhenSelected', function () {
+kenkenApp.directive('ngFocusWhenSelected', function () {
     return function (scope, element, attrs) {
         element.select();
     };
