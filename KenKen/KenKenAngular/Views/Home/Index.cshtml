@@ -10,6 +10,12 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <style>
+        .cell {
+            outline: 1px dotted lightgray;
+            float: left;
+            width: 60px;
+            height: 60px;
+        }
         .topBorder {
             border-top: 1px solid black;
         }
@@ -30,22 +36,23 @@
         <div style="width: 800px; margin: auto;">
             <table style="border: 2px solid black;">
                 <tr style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
-                    <td style="outline: 1px dotted lightgray; float: left; width: 60px; height: 60px"
-                        ng-click="editorEnabled=!editorEnabled"
-                        ng-class="{ 
+                    <td ng-repeat="cell in row"
+                        ng-click="selectCell(cell)"
+                        ng-class="
+                        {
                             topBorder: cell.topBorder,
                             leftBorder: cell.leftBorder,
                             rightBorder: cell.rightBorder,
                             bottomBorder: cell.bottomBorder
                         }"
-                        ng-repeat="cell in row">
-                        <span style="color: gray;" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
-                        <div ng-hide="editorEnabled">
-                            <span style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</span>
-                        </div>
-                        <div ng-show="editorEnabled">
-                            <input style="font-size: 24px; width: 100%;" ng-model="cell.Value">
-                        </div>
+                        ng-switch on="isSelected(cell)"
+                        class=" cell">
+
+                        <span style="color: gray;" ng-show="cell.showSymbol">
+                            {{cell.Group | groupSymbol}}</span>
+
+                        <input ng-switch-when="true" style="font-size: 24px; width: 100%;" ng-model="cell.Value">
+                        <div ng-switch-default style="position: relative; font-size: 52px; left: 13px; bottom: 27px;">{{cell.Value}}</div>
                     </td>
                 </tr>
             </table>

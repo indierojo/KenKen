@@ -8,9 +8,17 @@ kenkenApp.config([
 kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
     $http.get('http://localhost:63995/api/puzzle/1').success(function (data) {
         populateCellBorderData(data);
+        kenkenApp.Groups = data.Groups;
 
         $scope.puzzle = data;
-        kenkenApp.Groups = data.Groups;
+
+        $scope.selectCell = function (cell) {
+            $scope.selectedCell = cell;
+        };
+
+        $scope.isSelected = function (cell) {
+            return $scope.selectedCell === cell;
+        };
     });
 }]);
 kenkenApp.filter('groupSymbol', function() {
