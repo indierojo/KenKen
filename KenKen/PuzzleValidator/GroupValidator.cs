@@ -7,7 +7,7 @@ namespace PuzzleValidator
     {
         public ValidationResult CheckForValidity(Puzzle puzzle)
         {
-            var allCells = puzzle.Grid.Cells.Cast<Cell>().ToList();
+            var allCells = puzzle.Grid.Cells.SelectMany(x => x).ToList();
 
             var groupedCells = allCells.GroupBy(c => c.Group);
             var groupLookup = puzzle.Groups.ToDictionary(g => g.Group);
