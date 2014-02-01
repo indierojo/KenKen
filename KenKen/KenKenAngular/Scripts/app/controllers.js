@@ -25,9 +25,12 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         };
     });
 }]);
-kenkenApp.directive('ngFocusWhenSelected', function () {
+kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
     return function (scope, element, attrs) {
-        element.select();
+        // 1 ms timeout required or the text within is not selected
+        $timeout(function() {
+            element[0].select();
+        }, 1);
     };
 });
 kenkenApp.directive('ngEnter', function () {
