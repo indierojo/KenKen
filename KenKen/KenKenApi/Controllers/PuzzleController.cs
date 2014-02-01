@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using Domain;
 using KenKenBuilder;
+using PuzzleValidator;
 
 namespace KenKenApi.Controllers
 {
@@ -27,6 +28,22 @@ namespace KenKenApi.Controllers
             return new SimpleKenKenPuzzleBuilder().Build(DifficultyLevel.Easy, GridSize.FourByFour);
         }
 
+        // POST api/puzzle/5/check
+        [Route("api/puzzle/{puzzleId}/check")]
+        [HttpPost]
+        public bool Check(int puzzleId, [FromBody]Cell[][] submittedAnswer)
+        {
+            if (submittedAnswer == null)
+            {
+                throw new ArgumentException("Could not parse values into expected format.");
+            }
+
+            var puzzleDefinition = Get(puzzleId);
+            var puzzleToCheck = new Puzzle(submittedAnswer, puzzleDefinition.Groups);
+
+            var validationResult = PuzzleValidationService.CheckForValidity(puzzleToCheck);
+            return validationResult.WasValid;
+        }
         // POST api/puzzle
         public void Post([FromBody]Puzzle value)
         {
