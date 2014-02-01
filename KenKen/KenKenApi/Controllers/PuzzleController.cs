@@ -11,7 +11,7 @@ namespace KenKenApi.Controllers
         // GET api/puzzle
         public IEnumerable<Puzzle> Get()
         {
-            return new List<Puzzle> {Get(0)};
+            throw new NotSupportedException();
         }
 
         // GET api/puzzle/5
