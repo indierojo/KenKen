@@ -33,7 +33,7 @@ namespace KenKenApi.Controllers
         // POST api/puzzle/5/check
         [Route("api/puzzle/{puzzleId}/check")]
         [HttpPost]
-        public bool Check(int puzzleId, [FromBody]Cell[][] submittedAnswer)
+        public ValidationResult Check(int puzzleId, [FromBody]Cell[][] submittedAnswer)
         {
             if (submittedAnswer == null)
             {
@@ -43,8 +43,7 @@ namespace KenKenApi.Controllers
             var puzzleDefinition = Get(puzzleId);
             var puzzleToCheck = new Puzzle(submittedAnswer, puzzleDefinition.Groups);
 
-            var validationResult = PuzzleValidationService.CheckForValidity(puzzleToCheck);
-            return validationResult.WasValid;
+            return PuzzleValidationService.CheckForValidity(puzzleToCheck);
         }
         // POST api/puzzle
         public void Post([FromBody]Puzzle value)
