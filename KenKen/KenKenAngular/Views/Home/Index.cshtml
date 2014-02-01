@@ -64,24 +64,23 @@
         <div id="pageWrapper">
             <table class="puzzleOutline">
                 <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
-                    <td ng-repeat="cell in row"
-                        ng-click="selectCell(cell)"
-                        ng-class="
-                        {
+                    <td class="cell"
+                        ng-class="{
                             topBorder: cell.topBorder,
                             leftBorder: cell.leftBorder,
                             rightBorder: cell.rightBorder,
                             bottomBorder: cell.bottomBorder
                         }"
-                        ng-switch on="isSelected(cell)"
-                        class=" cell">
+                        ng-repeat="cell in row"
+                        ng-click="selectCell(cell)"
+                        ng-switch on="isSelected(cell)">
 
                         <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</div>
 
-                        <input ng-switch-when="true" 
+                        <input ng-switch-when="true"
                                ng-focus-when-selected
                                ng-model="cell.Value">
-                        <div ng-switch-default class="cellValue">{{cell.Value}}</div>
+                        <div class="cellValue" ng-switch-default>{{cell.Value}}</div>
                     </td>
                 </tr>
             </table>
