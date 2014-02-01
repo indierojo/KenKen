@@ -79,6 +79,8 @@
 
                         <input ng-switch-when="true"
                                ng-focus-when-selected
+                               ng-enter="deselectAllCells()"
+                               ng-blur="deselectAllCells()"
                                ng-model="cell.Value">
                         <div class="cellValue" ng-switch-default>{{cell.Value}}</div>
                     </td>

@@ -19,11 +19,28 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         $scope.isSelected = function (cell) {
             return $scope.selectedCell === cell;
         };
+
+        $scope.deselectAllCells = function() {
+            return $scope.selectedCell = null;
+        };
     });
 }]);
 kenkenApp.directive('ngFocusWhenSelected', function () {
     return function (scope, element, attrs) {
         element.select();
+    };
+});
+kenkenApp.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
     };
 });
 kenkenApp.filter('groupSymbol', function() {
