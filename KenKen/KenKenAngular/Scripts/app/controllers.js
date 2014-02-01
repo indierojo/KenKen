@@ -5,8 +5,19 @@ kenkenApp.config([
         $httpProvider.defaults.useXDomain = true;
     }
 ]);
-kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
-    $http.get('http://localhost:63995/api/puzzle/1').success(function(data) {
+kenkenApp.controller('kenkenApp', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+    var puzzleId = 1;
+    if ($location.path()) {
+        var parsedPuzzleId = parseInt($location.path().replace("/", ""));
+        if (typeof parsedPuzzleId == 'number') {
+            puzzleId = parsedPuzzleId;
+        }
+    }
+
+    $scope.puzzleId = puzzleId;
+
+    $http.get('http://localhost:63995/api/puzzle/' + puzzleId).success(function (data) {
         populateCellBorderData(data);
         kenkenApp.Groups = data.Groups;
 
@@ -42,9 +53,8 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         $scope.hasErrors = null;
 
         var cellArray = $scope.puzzle.Grid.Cells;
-        var puzzleId = 1;
-
-        $http.post('http://localhost:63995/api/puzzle/' + puzzleId + '/check', cellArray).success(function (data) {
+        
+        $http.post('http://localhost:63995/api/puzzle/' + $scope.puzzleId + '/check', cellArray).success(function (data) {
             $scope.information = null;
             if (data === "true") {
                 $scope.isSolved = true;
