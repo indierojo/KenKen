@@ -10,14 +10,6 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
         populateCellBorderData(data);
 
         $scope.puzzle = data;
-        $scope.getBorderClasses = function(cell) {
-            return {
-                topBorder: cell.topBorder,
-                leftBorder: cell.leftBorder,
-                rightBorder: cell.rightBorder,
-                bottomBorder: cell.bottomBorder
-            };
-        };
         kenkenApp.Groups = data.Groups;
     });
 }]);

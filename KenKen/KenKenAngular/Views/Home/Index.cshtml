@@ -32,7 +32,12 @@
                 <tr style="clear:both;" ng-repeat="row in puzzle.Grid.Cells">
                     <td style="outline: 1px dotted lightgray; float: left; width: 60px; height: 60px"
                         ng-click="editorEnabled=!editorEnabled"
-                        ng-class="getBorderClasses(cell)"
+                        ng-class="{ 
+                            topBorder: cell.topBorder,
+                            leftBorder: cell.leftBorder,
+                            rightBorder: cell.rightBorder,
+                            bottomBorder: cell.bottomBorder
+                        }"
                         ng-repeat="cell in row">
                         <span style="color: gray;" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</span>
                         <div ng-hide="editorEnabled">
