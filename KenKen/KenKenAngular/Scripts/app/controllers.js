@@ -32,6 +32,15 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', function ($scope, $http) {
             });
         });
     };
+
+    $scope.checkSolution = function () {
+        var isValid = checkPuzzleSolution($scope.puzzle);
+        if (isValid) {
+            $scope.isSolved = true;
+        } else {
+            $scope.hasErrors = true;
+        }
+    };
 }]);
 kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
     return function (scope, element, attrs) {
@@ -99,4 +108,9 @@ var populateCellBorderData = function(data) {
             }
         }
     }
-}
+};
+
+var checkPuzzleSolution = function(puzzle) {
+//    var cellArray = puzzle.Grid.Cells;
+    return false;
+};

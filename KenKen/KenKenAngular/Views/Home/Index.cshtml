@@ -84,6 +84,8 @@
 </head>
     <body ng-controller="kenkenApp">
         <div id="pageWrapper">
+            <div ng-if="isSolved">Congratulations! You have solved the puzzle!</div>
+            <div ng-if="hasErrors">Whoops! There are some issues with the puzzle!</div>
             <table class="puzzleOutline">
                 <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
                     <td class="cell"
@@ -109,7 +111,7 @@
                 </tr>
             </table>
 
-            <button id="isValidButton">Check</button>
+            <button id="isValidButton" ng-click="checkSolution()">Check</button>
             <button id="resetButton" ng-click="resetPuzzle()">Reset</button>
             
         </div>
