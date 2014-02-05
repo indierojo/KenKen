@@ -1,0 +1,143 @@
+﻿@{
+    Layout = null;
+    Response.Headers["X-UA-Compatible"] = "IE=10";
+}
+<!doctype html>
+<html lang="en" ng-app="kenkenApp">
+<head>
+    <meta charset="utf-8" />
+    <title>My ASP.NET Angular.JS Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        #pageWrapper {
+            width: 800px;
+            margin: auto;
+        }
+        .message {
+            font-size: 16px;
+        }
+        .info {
+            color: steelblue;
+        }
+        .solved {
+            color: limegreen;
+        }
+        .error {
+            color: tomato;
+        }
+        .puzzleOutline {
+            border: 2px solid black;
+        }
+        .puzzleRow {
+            clear: both;
+        }
+        .cell {
+            outline: 1px dotted lightgray;
+            float: left;
+            width: 60px;
+            height: 60px;
+        }
+        .groupLabel {
+            position: absolute;
+            color: gray;
+        }
+        .cellValue {
+            position: relative;
+            top: -5px;
+            text-align: center;
+            font-size: 52px;
+        }
+        .cell input {
+            outline: 2px solid steelblue;
+            outline-offset: -1px;
+            font-size: 20px;
+            border: none;
+            padding-top: 15px;
+            padding-left: 5px;
+            width: 100%;
+            height: 100%;
+        }
+        .topBorder {
+            border-top: 1px solid black;
+        }
+        .rightBorder {
+            border-right: 1px solid black;
+        }
+        .bottomBorder {
+            border-bottom: 1px solid black;
+        }
+        .leftBorder {
+            border-left: 1px solid black;
+        }
+
+        button {
+            border: none;
+            width: 120px;
+            height: 40px;
+            color: white;
+        }
+
+        #isValidButton {
+            margin-top: 5px;
+            outline: 1px solid limegreen;
+            background: limegreen;
+        }
+
+        #resetButton {
+            outline: 1px solid tomato;
+            background: tomato;
+        }
+    </style>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body ng-controller="kenkenApp">
+    <div id="pageWrapper">
+        <div class="info message" ng-show="information">{{information}}</div>
+        <div class="solved message" ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
+        <div class="error message" ng-show="hasErrors">
+            Whoops! There are some issues with the puzzle!
+            <span>Show Errors: <input type="checkbox" ng-model="showErrors" value="{{showErrors}}"/></span>
+        </div>
+        <div id="errorSummary" ng-show="showErrors">
+            <ul>
+                <li ng-repeat="error in puzzleErrors">{{error}}</li>
+            </ul>
+        </div>
+        <table class="puzzleOutline">
+            <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
+                <td class="cell"
+                    ng-class="{
+                            topBorder: cell.topBorder,
+                            leftBorder: cell.leftBorder,
+                            rightBorder: cell.rightBorder,
+                            bottomBorder: cell.bottomBorder
+                        }"
+                    ng-repeat="cell in row"
+                    ng-click="selectCell(cell)"
+                    ng-switch on="isSelected(cell)">
+
+                    <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Group | groupSymbol}}</div>
+
+                    <input ng-switch-when="true"
+                           ng-focus-when-selected
+                           ng-enter="deselectAllCells()"
+                           ng-blur="deselectAllCells()"
+                           ng-model="cell.Value">
+                    <div class="cellValue" ng-switch-default>{{cell.Value}}</div>
+                </td>
+            </tr>
+        </table>
+
+        <button id="isValidButton" ng-click="checkSolution()">Check</button>
+        <button id="resetButton" ng-click="resetPuzzle()">Reset</button>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

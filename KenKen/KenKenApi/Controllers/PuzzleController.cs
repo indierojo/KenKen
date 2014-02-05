@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Domain;
 using KenKenBuilder;
 using PuzzleValidator;
 
 namespace KenKenApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:59519", headers: "*", methods: "*")]
     public class PuzzleController : ApiController
     {
         private static readonly int SmallTestPuzzleId = -124;
