@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Web.Http;
 using Domain;
 using KenKenBuilder;
@@ -14,7 +15,18 @@ namespace KenKenApi.Controllers
         // GET api/puzzle
         public IEnumerable<Puzzle> Get()
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
+        }
+
+        [Route("api/puzzle/random/{puzzleSize}/")]
+        [HttpGet]
+        public Puzzle Random(int puzzleSize)
+        {
+            if (puzzleSize < 3 || puzzleSize > 7)
+            {
+                throw new ArgumentOutOfRangeException("puzzleSize", "Puzzle size must be within 3 and 7!");
+            }
+            return new KenKenPuzzleBuilder().Build(DifficultyLevel.Easy, (GridSize)puzzleSize);
         }
 
         // GET api/puzzle/5
