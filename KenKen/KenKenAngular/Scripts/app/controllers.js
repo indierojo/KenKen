@@ -55,9 +55,7 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', '$location', function ($sc
         $scope.hasErrors = null;
         $scope.puzzleErrors = null;
 
-        var cellArray = $scope.puzzle.Grid.Cells;
-        
-        $http.post('http://localhost:63995/api/puzzle/check', cellArray).success(function (data) {
+        $http.post('http://localhost:63995/api/puzzle/check', $scope.puzzle).success(function (data) {
             $scope.information = null;
             if (data.WasValid) {
                 $scope.isSolved = true;
@@ -69,7 +67,7 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', '$location', function ($sc
     };
 }]);
 kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
-    return function (scope, element, attrs) {
+    return function (scope, element) {
         // 1 ms timeout required or the text within is not selected
         $timeout(function() {
             element[0].select();
