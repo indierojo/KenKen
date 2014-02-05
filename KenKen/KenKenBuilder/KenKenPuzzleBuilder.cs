@@ -7,6 +7,8 @@ namespace KenKenBuilder
 {
     public class KenKenPuzzleBuilder : IKenKenPuzzleBuilder
     {
+        private static readonly ThreadSafeRandom RandomSeed = new ThreadSafeRandom();
+
         public Puzzle Build(DifficultyLevel difficultyLevel, GridSize gridSize)
         {
 //            var board = GetInitialBoard(gridSize);
@@ -63,8 +65,7 @@ namespace KenKenBuilder
         {
             var adjacentCells = GetAdjacentCells(cellGroup, board.GetLength(0));
             var openCells = GetOpenCells(adjacentCells, board);
-            var randomSeed = new Random();
-            var randomCells = openCells.OrderBy(a => randomSeed.Next());
+            var randomCells = openCells.OrderBy(a => RandomSeed.Next());
             return randomCells.FirstOrDefault();
         }
 
