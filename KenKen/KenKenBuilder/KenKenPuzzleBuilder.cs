@@ -46,7 +46,7 @@ namespace KenKenBuilder
                 var cellGroup = new List<Cell>();
                 AddCellToGroup(cell, cellGroup, board);
                 Cell nextCell;
-                while (ShouldGrow(cellGroup) && ( nextCell = PickAdjacentOpenCell(cellGroup, board) ) != null)
+                while (ShouldGrow(cellGroup, (int)gridSize) && ( nextCell = PickAdjacentOpenCell(cellGroup, board) ) != null)
                 {
                     AddCellToGroup(nextCell, cellGroup, board);
                 }
@@ -95,10 +95,25 @@ namespace KenKenBuilder
             return cell.X >= 0 && cell.Y >= 0 && cell.X < boardSize && cell.Y < boardSize;
         }
 
-        private static bool ShouldGrow(IReadOnlyCollection<Cell> cellGroup)
+        private static bool ShouldGrow(IReadOnlyCollection<Cell> cellGroup, int boardSize)
         {
-            //TODO smater function that uses random and statistics
-            return cellGroup.Count < 4;
+//            return cellGroup.Count < 4;
+
+            if (cellGroup.Count >= boardSize)
+            {
+                return false;
+            }
+
+            // 1 => 1
+            // 2 => .5
+            // 3 => .333333
+            // 5 => .2
+            // 9 => .111111
+            Func<int, double> distributionMethod = size => 1d / size;
+            var sizeDistribution = Enumerable.Range(1, boardSize).ToDictionary(x => x, distributionMethod);
+
+            var random = RandomSeed.NextDouble();
+            return sizeDistribution[cellGroup.Count] > random;
         }
 
         private static Cell GetNextCell(bool[,] board)
