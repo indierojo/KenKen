@@ -24,9 +24,9 @@ namespace KenKenApi.Controllers
         [HttpGet]
         public Puzzle Random(int puzzleSize)
         {
-            if (puzzleSize < 3 || puzzleSize > 7)
+            if (puzzleSize < 3 || puzzleSize > 9)
             {
-                throw new ArgumentOutOfRangeException("puzzleSize", "Puzzle size must be within 3 and 7!");
+                throw new ArgumentOutOfRangeException("puzzleSize", "Puzzle size must be within 3 and 9!");
             }
             return new KenKenPuzzleBuilder().Build(DifficultyLevel.Easy, (GridSize)puzzleSize);
         }
