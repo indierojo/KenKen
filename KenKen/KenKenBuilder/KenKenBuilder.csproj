@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IKenKenPuzzleBuilder.cs" />
+    <Compile Include="KenKenPuzzleBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleKenKenPuzzleBuilder.cs" />
     <Compile Include="TinyTestPuzzleBuilder.cs" />
