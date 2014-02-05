@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain;
+using MathNet.Numerics.Distributions;
 
 namespace KenKenBuilder
 {
     public class KenKenPuzzleBuilder : IKenKenPuzzleBuilder
     {
-        private static readonly ThreadSafeRandom RandomSeed = new ThreadSafeRandom();
+        private static readonly Random RandomSeed = new Random();
+        private static Normal _normalDistribution;
 
         public Puzzle Build(DifficultyLevel difficultyLevel, GridSize gridSize)
         {
+            _normalDistribution = CreateDistribution((int) gridSize);
 //            var board = GetInitialBoard(gridSize);
 //            Permute(board, gridSize);
             var groups = DrawGroups(gridSize, difficultyLevel);
@@ -35,9 +38,24 @@ namespace KenKenBuilder
             return new Puzzle(grid, groupDefinitions);
         }
 
+        private Normal CreateDistribution(int boardSize)
+        {
+            // 3 => 2
+            // 6 => 3
+            // 9 => 4
+            var mean = Math.Ceiling((double) (boardSize/2));
+//            var mean = 4;
+            
+            // 3 => 1
+            // 6 => 2
+            // 9 => 3
+            var stdDev = Math.Sqrt(Math.Floor((double)(boardSize / 3)));
+//            var stdDev = 1;
+            return new Normal(mean, stdDev);
+        }
+
         private static IEnumerable<List<Cell>> DrawGroups(GridSize gridSize, DifficultyLevel difficultyLevel)
         {
-
             var board = new bool[(int) gridSize, (int) gridSize];
             var groups = new List<List<Cell>>();
             Cell cell;
@@ -46,7 +64,7 @@ namespace KenKenBuilder
                 var cellGroup = new List<Cell>();
                 AddCellToGroup(cell, cellGroup, board);
                 Cell nextCell;
-                while (ShouldGrow(cellGroup, (int)gridSize) && ( nextCell = PickAdjacentOpenCell(cellGroup, board) ) != null)
+                while (ShouldGrow(cellGroup) && ( nextCell = PickAdjacentOpenCell(cellGroup, board) ) != null)
                 {
                     AddCellToGroup(nextCell, cellGroup, board);
                 }
@@ -95,25 +113,19 @@ namespace KenKenBuilder
             return cell.X >= 0 && cell.Y >= 0 && cell.X < boardSize && cell.Y < boardSize;
         }
 
-        private static bool ShouldGrow(IReadOnlyCollection<Cell> cellGroup, int boardSize)
+        private static bool ShouldGrow(IReadOnlyCollection<Cell> cellGroup)
         {
-//            return cellGroup.Count < 4;
-
-            if (cellGroup.Count >= boardSize)
+            if (cellGroup.Count == 1)
             {
-                return false;
+                return true;
             }
 
-            // 1 => 1
-            // 2 => .5
-            // 3 => .333333
-            // 5 => .2
-            // 9 => .111111
-            Func<int, double> distributionMethod = size => 1d / size;
-            var sizeDistribution = Enumerable.Range(1, boardSize).ToDictionary(x => x, distributionMethod);
-
-            var random = RandomSeed.NextDouble();
-            return sizeDistribution[cellGroup.Count] > random;
+            var random = _normalDistribution.Sample();
+            if (random < 1)
+            {
+                random = 1;
+            }
+            return cellGroup.Count < random;
         }
 
         private static Cell GetNextCell(bool[,] board)
