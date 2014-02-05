@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenWebapp.Tests", "KenKenWebapp.Tests\KenKenWebapp.Tests.csproj", "{0BF639D9-15FE-473B-85FA-E44189100AC5}"
 EndProject
@@ -18,6 +18,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenApi", "KenKenApi\KenKenApi.csproj", "{3AC787E2-450A-4D68-89F8-A307D0CB9654}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenApi.Tests", "KenKenApi.Tests\KenKenApi.Tests.csproj", "{94CF10E5-C984-4FFC-8791-A294F00506D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenAngular", "KenKenAngular\KenKenAngular.csproj", "{B5283FFD-B2C4-41F0-8514-8AD3AAD4971E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenAngular.Tests", "KenKenAngular.Tests\KenKenAngular.Tests.csproj", "{B3FDE187-E42D-4205-9D4E-46D9A7102E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KenKenBuilderTests", "KenKenBuilderTests\KenKenBuilderTests.csproj", "{C0AA9F6C-60A1-49E3-9902-7077FED476C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +63,18 @@ Global
 		{94CF10E5-C984-4FFC-8791-A294F00506D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94CF10E5-C984-4FFC-8791-A294F00506D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94CF10E5-C984-4FFC-8791-A294F00506D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5283FFD-B2C4-41F0-8514-8AD3AAD4971E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5283FFD-B2C4-41F0-8514-8AD3AAD4971E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5283FFD-B2C4-41F0-8514-8AD3AAD4971E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5283FFD-B2C4-41F0-8514-8AD3AAD4971E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3FDE187-E42D-4205-9D4E-46D9A7102E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3FDE187-E42D-4205-9D4E-46D9A7102E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3FDE187-E42D-4205-9D4E-46D9A7102E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3FDE187-E42D-4205-9D4E-46D9A7102E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0AA9F6C-60A1-49E3-9902-7077FED476C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0AA9F6C-60A1-49E3-9902-7077FED476C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0AA9F6C-60A1-49E3-9902-7077FED476C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0AA9F6C-60A1-49E3-9902-7077FED476C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
