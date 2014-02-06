@@ -38,7 +38,7 @@ namespace KenKenBuilder
 
         private static Cell EmptyCell(ushort groupNumber)
         {
-            return new Cell(groupNumber);
+            return new Cell{Group = groupNumber};
         }
     }
 }

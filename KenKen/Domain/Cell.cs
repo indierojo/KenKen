@@ -5,11 +5,7 @@ namespace Domain
     [DataContract]
     public class Cell
     {
-        public Cell(ushort group, ushort? value = null)
-        {
-            Group = group;
-            Value = value;
-        }
+        public Cell() { }
 
         public Cell(int x, int y)
         {
