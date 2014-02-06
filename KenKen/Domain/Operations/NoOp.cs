@@ -15,7 +15,7 @@ namespace Domain.Operations
             get { return OperationType.NoOp; }
         }
 
-        public uint DoOperationOn(IEnumerable<ushort> values)
+        public uint ApplyOperationTo(IEnumerable<ushort> values)
         {
             return values.First();
         }
