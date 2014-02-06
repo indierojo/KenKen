@@ -175,7 +175,7 @@ namespace KenKenValidationTests
         {
             var groups = new List<GroupDefinition>
             {
-                new GroupDefinition(1, new Addition(), 40)
+                new GroupDefinition(1, OperationType.Addition, 40)
             };
             return groups;
         }

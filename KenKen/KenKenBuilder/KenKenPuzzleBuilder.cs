@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain;
+using Domain.Operations;
 using MathNet.Numerics.Distributions;
 
 namespace KenKenBuilder
@@ -14,28 +15,62 @@ namespace KenKenBuilder
         public Puzzle Build(DifficultyLevel difficultyLevel, GridSize gridSize)
         {
             _normalDistribution = CreateDistribution((int) gridSize);
-//            var board = GetInitialBoard(gridSize);
-//            Permute(board, gridSize);
+            var board = GetInitialBoard(gridSize);
+            Permute(board, gridSize);
             var groups = DrawGroups(gridSize, difficultyLevel);
             var grid = new Cell[(int) gridSize][];
-            //pick group operators
+
+            ushort groupNumber = 1;
             var groupDefinitions = groups.Select(cellGroup =>
             {
-                var groupDef = new GroupDefinition();
-                foreach (var cell in cellGroup)
-                {
-                    cell.Group = groupDef.Group;
-                    var row = grid[cell.X];
-                    if (row == null)
-                    {
-                        grid[cell.X] = new Cell[(int) gridSize];
-                    }
-                    grid[cell.X][cell.Y] = cell;
-                }
-                return groupDef;
+                return BuildGroupDef(groupNumber++, difficultyLevel, gridSize, cellGroup, grid, board);
             } );
 
             return new Puzzle(grid, groupDefinitions);
+        }
+
+        private GroupDefinition BuildGroupDef(ushort groupNumber, DifficultyLevel difficultyLevel, GridSize gridSize, List<Cell> cellGroup, Cell[][] grid,
+            int[,] board)
+        {
+            var cellValues = new List<ushort>();
+            foreach (var cell in cellGroup)
+            {
+                cell.Group = groupNumber;
+                var row = grid[cell.X];
+                if (row == null)
+                {
+                    grid[cell.X] = new Cell[(int) gridSize];
+                }
+                grid[cell.X][cell.Y] = cell;
+                cellValues.Add( (ushort) board[cell.X,cell.Y]);
+            }
+            var operation = PickOperation(cellGroup, board, difficultyLevel);
+            var expectedTotal = operation.ApplyOperationTo(cellValues);
+            return new GroupDefinition(groupNumber, operation.Type, (ushort) expectedTotal);
+        }
+
+        private IOperation PickOperation(List<Cell> cells, int[,] board, DifficultyLevel difficultyLevel)
+        {
+            var choices = GetPossibleOperations(cells, board);
+            //TODO pick based on difficulty
+            var randomizedChoices = choices.OrderBy(a => RandomSeed.Next());
+            return randomizedChoices.First();
+        }
+
+        private IEnumerable<IOperation> GetPossibleOperations(List<Cell> cells, int[,] board)
+        {
+            if (cells.Count == 1)
+            {
+                return new List<IOperation> {new NoOp() };
+            }
+
+            var possibleOperations = new List<IOperation> { new Addition(), new Multiplication() };
+            if (cells.Count == 2 )
+            {
+                possibleOperations.Add(new Subtraction());
+                possibleOperations.Add(new Division());
+            }
+            return possibleOperations;
         }
 
         private Normal CreateDistribution(int boardSize)
@@ -144,14 +179,64 @@ namespace KenKenBuilder
             return null;
         }
 
-        private static void Permute(object board, GridSize gridSize)
+        private static void Permute(int[,] board, GridSize gridSize)
         {
-            throw new System.NotImplementedException();
+            var numOperations = RandomSeed.NextDouble()*100;
+
+            for (var i = 0; i < numOperations; i++)
+            {
+                var flipX = RandomSeed.NextDouble() >= 0.5;
+                var choice1 = RandomSeed.Next(0, (int) gridSize);
+                var choice2 = choice1;
+                while (choice2 == choice1)
+                {
+                    choice2 = RandomSeed.Next(0, (int) gridSize);
+                }
+                if (flipX)
+                {
+                    FlipX(choice1, choice2, board);
+                }
+                else
+                {
+                    FlipY(choice1, choice2, board);
+                }
+            }
         }
 
-        private static object GetInitialBoard(GridSize gridSize)
+        private static void FlipX(int choice1, int choice2,  int[,] board)
         {
-            throw new System.NotImplementedException();
+            for (var i = 0; i < board.GetLength(0); i++)
+            {
+                var val = board[choice1, i];
+                board[choice1, i] = board[choice2, i];
+                board[choice2, i] = val;
+            }
+        }
+
+        private static void FlipY(int choice1, int choice2, int[,] board)
+        {
+            for (var i = 0; i < board.GetLength(0); i++)
+            {
+                var val = board[i,choice1];
+                board[i, choice1] = board[i, choice2];
+                board[i, choice2] = val;
+            }
+        }
+
+        private static int[,] GetInitialBoard(GridSize gridSize)
+        {
+            var result = new int[(int) gridSize, (int) gridSize];
+            for (var row = 0; row < (int) gridSize; row++)
+            {
+                for (var col = 0; col < (int) gridSize; col++)
+                {
+                    var i = ( (col + row )%(int) gridSize ) + 1;
+                    Console.Write(i + " ");
+                    result[row, col] = i;
+                }
+                Console.WriteLine();
+            }
+            return result;
         }
     }
 }

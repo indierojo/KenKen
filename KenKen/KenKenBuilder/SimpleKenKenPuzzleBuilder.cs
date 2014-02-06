@@ -29,13 +29,13 @@ namespace KenKenBuilder
 
             var groups = new List<GroupDefinition>
             {
-                new GroupDefinition(NoOperationFourGroup, new NoOp(), 4),
-                new GroupDefinition(DivisionTwoGroup, new Division(), 2),
-                new GroupDefinition(MultiplicationNineGroup, new Multiplication(), 9),
-                new GroupDefinition(MultiplicationSixGroup, new Multiplication(), 6),
-                new GroupDefinition(AdditionThreeGroup, new Addition(), 3),
-                new GroupDefinition(SubtractionThreeGroup, new Subtraction(), 3),
-                new GroupDefinition(MultiplicationTwentyFourGroup, new Multiplication(), 24),
+                new GroupDefinition(NoOperationFourGroup, OperationType.NoOp, 4),
+                new GroupDefinition(DivisionTwoGroup, OperationType.Division, 2),
+                new GroupDefinition(MultiplicationNineGroup, OperationType.Multiplication, 9),
+                new GroupDefinition(MultiplicationSixGroup, OperationType.Multiplication, 6),
+                new GroupDefinition(AdditionThreeGroup, OperationType.Addition, 3),
+                new GroupDefinition(SubtractionThreeGroup, OperationType.Subtraction, 3),
+                new GroupDefinition(MultiplicationTwentyFourGroup, OperationType.Multiplication, 24),
             };
 
             var cells = new[]
