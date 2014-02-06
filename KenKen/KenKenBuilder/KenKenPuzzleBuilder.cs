@@ -44,33 +44,46 @@ namespace KenKenBuilder
                 grid[cell.X][cell.Y] = cell;
                 cellValues.Add( (ushort) board[cell.X,cell.Y]);
             }
-            var operation = PickOperation(cellGroup, board, difficultyLevel);
+            var operation = PickOperation(cellValues, board, difficultyLevel);
             var expectedTotal = operation.ApplyOperationTo(cellValues);
             return new GroupDefinition(groupNumber, operation.Type, (ushort) expectedTotal);
         }
 
-        private IOperation PickOperation(List<Cell> cells, int[,] board, DifficultyLevel difficultyLevel)
+        private IOperation PickOperation(List<ushort> cellValues, int[,] board, DifficultyLevel difficultyLevel)
         {
-            var choices = GetPossibleOperations(cells, board);
+            var choices = GetPossibleOperations(cellValues, board);
             //TODO pick based on difficulty
             var randomizedChoices = choices.OrderBy(a => RandomSeed.Next());
             return randomizedChoices.First();
         }
 
-        private IEnumerable<IOperation> GetPossibleOperations(List<Cell> cells, int[,] board)
+        private IEnumerable<IOperation> GetPossibleOperations(List<ushort> cellValues, int[,] board)
         {
-            if (cells.Count == 1)
+            if (cellValues.Count == 1)
             {
                 return new List<IOperation> {new NoOp() };
             }
 
             var possibleOperations = new List<IOperation> { new Addition(), new Multiplication() };
-            if (cells.Count == 2 )
+            if (cellValues.Count == 2)
             {
                 possibleOperations.Add(new Subtraction());
-                possibleOperations.Add(new Division());
+                if (AreEvenlyDivisible(cellValues[0], cellValues[1]))
+                {
+                    possibleOperations.Add(new Division());
+                }
             }
             return possibleOperations;
+        }
+
+        private bool AreEvenlyDivisible(ushort value, ushort value1)
+        {
+            if (value > value1)
+            {
+                return value%value1 == 0;
+            }
+
+            return (value1%value) == 0;
         }
 
         private Normal CreateDistribution(int boardSize)
