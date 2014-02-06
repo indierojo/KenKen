@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Domain;
+using Domain.Operations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using KenKenApi.Controllers;
 
@@ -31,6 +33,19 @@ namespace KenKenApi.Tests.Controllers
             // Arrange
             var controller = new PuzzleController();
 
+            var groups = new List<GroupDefinition>
+            {
+                new GroupDefinition(1, OperationType.NoOp, 1),
+                new GroupDefinition(2, OperationType.NoOp, 2),
+                new GroupDefinition(3, OperationType.NoOp, 3),
+                new GroupDefinition(4, OperationType.NoOp, 2),
+                new GroupDefinition(5, OperationType.NoOp, 3),
+                new GroupDefinition(6, OperationType.NoOp, 1),
+                new GroupDefinition(7, OperationType.NoOp, 3),
+                new GroupDefinition(8, OperationType.NoOp, 1),
+                new GroupDefinition(9, OperationType.NoOp, 2)
+            };
+
             var correctSolution = new[]
             {
                 new[] {new Cell(1, 1), new Cell(2, 2), new Cell(3, 3)},
@@ -45,8 +60,8 @@ namespace KenKenApi.Tests.Controllers
             };
 
             // Act
-            var correctSolutionValidationResult = controller.Check(SmallTestPuzzleId, correctSolution);
-            var incorrectSolutionValidationResult = controller.Check(SmallTestPuzzleId, incorrectSolution);
+            var correctSolutionValidationResult = controller.Check(new Puzzle(correctSolution, groups));
+            var incorrectSolutionValidationResult = controller.Check(new Puzzle(incorrectSolution, groups));
 
             // Assert
             Assert.AreEqual(true, correctSolutionValidationResult.WasValid);
