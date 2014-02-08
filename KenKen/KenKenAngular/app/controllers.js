@@ -1,6 +1,6 @@
 var kenkenControllers = angular.module('kenkenApp', []);
 
-kenkenControllers.controller('kenkenApp', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+kenkenControllers.controller('kenkenController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
     var puzzleSize = 3;
     if ($location.path()) {

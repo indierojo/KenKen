@@ -12,13 +12,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body ng-controller="kenkenApp">
+<body ng-controller="kenkenController">
     <div id="pageWrapper">
         <div class="info message" ng-show="information">{{information}}</div>
         <div class="solved message" ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
         <div class="error message" ng-show="hasErrors">
             Whoops! There are some issues with the puzzle!
-            <span>Show Errors: <input type="checkbox" ng-model="showErrors" value="{{showErrors}}"/></span>
+            <span>Show Errors: <input type="checkbox" ng-model="showErrors" value="{{showErrors}}" /></span>
         </div>
         <div id="errorSummary" ng-show="showErrors">
             <ul>
