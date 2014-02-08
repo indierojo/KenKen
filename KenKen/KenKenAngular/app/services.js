@@ -2,7 +2,7 @@
 
 var kenkenServices = angular.module('kenkenServices', []);
 
-kenkenServices.factory('Puzzle', [
+kenkenServices.factory('puzzleService', [
         '$http', function($http) {
             var baseUrl = 'http://localhost:63995/api/puzzle/';
             return {

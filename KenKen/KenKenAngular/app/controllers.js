@@ -3,8 +3,8 @@
 var kenkenControllers = angular.module('kenkenControllers', []);
 
 kenkenControllers.controller('kenkenController', [
-    '$scope', '$location', 'Puzzle',
-    function($scope, $location, Puzzle) {
+    '$scope', '$location', 'puzzleService',
+    function($scope, $location, puzzleService) {
 
         var puzzleSize = 3;
         if ($location.path()) {
@@ -15,7 +15,7 @@ kenkenControllers.controller('kenkenController', [
         }
 
         $scope.puzzleSize = puzzleSize;
-        Puzzle.random(puzzleSize).success(function(puzzle) {
+        puzzleService.random(puzzleSize).success(function (puzzle) {
             populateCellBorderData(puzzle);
             populateSymbolData(puzzle);
             $scope.puzzle = puzzle;
@@ -53,7 +53,7 @@ kenkenControllers.controller('kenkenController', [
             $scope.puzzleErrors = null;
 
             var puzzle = $scope.puzzle;
-            Puzzle.check(puzzle).success(function (checkResult) {
+            puzzleService.check(puzzle).success(function (checkResult) {
                 $scope.information = null;
                 if (checkResult.WasValid) {
                     $scope.isSolved = true;
