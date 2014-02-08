@@ -15,7 +15,7 @@ namespace Domain.Operations
             get { return OperationType.Multiplication; }
         }
 
-        public uint DoOperationOn(IEnumerable<ushort> values)
+        public uint ApplyOperationTo(IEnumerable<ushort> values)
         {
             return values.Aggregate((a, b) => (ushort)(a * b));
         }

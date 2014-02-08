@@ -10,15 +10,15 @@ namespace KenKenBuilder
         {
             var groups = new List<GroupDefinition>
             {
-                new GroupDefinition(1, new NoOp(), 1),
-                new GroupDefinition(2, new NoOp(), 2),
-                new GroupDefinition(3, new NoOp(), 3),
-                new GroupDefinition(4, new NoOp(), 2),
-                new GroupDefinition(5, new NoOp(), 3),
-                new GroupDefinition(6, new NoOp(), 1),
-                new GroupDefinition(7, new NoOp(), 3),
-                new GroupDefinition(8, new NoOp(), 1),
-                new GroupDefinition(9, new NoOp(), 2),
+                new GroupDefinition(1, OperationType.NoOp, 1),
+                new GroupDefinition(2, OperationType.NoOp, 2),
+                new GroupDefinition(3, OperationType.NoOp, 3),
+                new GroupDefinition(4, OperationType.NoOp, 2),
+                new GroupDefinition(5, OperationType.NoOp, 3),
+                new GroupDefinition(6, OperationType.NoOp, 1),
+                new GroupDefinition(7, OperationType.NoOp, 3),
+                new GroupDefinition(8, OperationType.NoOp, 1),
+                new GroupDefinition(9, OperationType.NoOp, 2),
             };
 
             var cells = new[]
@@ -38,7 +38,7 @@ namespace KenKenBuilder
 
         private static Cell EmptyCell(ushort groupNumber)
         {
-            return new Cell(groupNumber);
+            return new Cell{Group = groupNumber};
         }
     }
 }

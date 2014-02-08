@@ -18,7 +18,7 @@ namespace PuzzleValidator
                 // ReSharper disable once PossibleInvalidOperationException -- If any is null, should have returned false by now.
                 var allCellValuesInGroup = cellsInGroup.Select(x => x.Value.Value);
 
-                var groupValueAfterOperation = group.Operation.DoOperationOn(allCellValuesInGroup);
+                var groupValueAfterOperation = group.Operation.ApplyOperationTo(allCellValuesInGroup);
                 var expectedTotal = group.ExpectedTotal;
                 if (groupValueAfterOperation != expectedTotal)
                 {

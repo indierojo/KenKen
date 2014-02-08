@@ -9,6 +9,8 @@ namespace Domain
         [DataMember]
         public readonly IEnumerable<GroupDefinition> Groups;
         private ushort? _gridDimensions;
+        [DataMember]
+        public Grid Grid { get; set; }
 
         public Puzzle(Cell[][] cells, IEnumerable<GroupDefinition> groups)
         {
@@ -26,7 +28,5 @@ namespace Domain
             return _gridDimensions.Value;
         }
 
-        [DataMember]
-        public Grid Grid { get; set; }
     }
 }

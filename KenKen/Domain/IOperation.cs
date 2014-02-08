@@ -7,6 +7,7 @@ namespace Domain
     {
         string Symbol { get; }
         OperationType Type { get; }
-        uint DoOperationOn(IEnumerable<ushort> values);
+        uint ApplyOperationTo(IEnumerable<ushort> values);
+
     }
 }

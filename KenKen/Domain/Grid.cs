@@ -14,9 +14,9 @@ namespace Domain
 
         private static GridSize GetGridSizeFor(int cellLength)
         {
-            if (cellLength < 3 || cellLength > 7)
+            if (cellLength < 3 || cellLength > 9)
             {
-                throw new ArgumentOutOfRangeException("cellLength", "Grid size must be between 3 and 7");
+                throw new ArgumentOutOfRangeException("cellLength", "Grid size must be between 3 and 9");
             }
 
             return (GridSize) cellLength;

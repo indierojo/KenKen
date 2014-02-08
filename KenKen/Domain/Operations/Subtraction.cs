@@ -15,7 +15,7 @@ namespace Domain.Operations
             get { return OperationType.Subtraction; }
         }
 
-        public uint DoOperationOn(IEnumerable<ushort> values)
+        public uint ApplyOperationTo(IEnumerable<ushort> values)
         {
             return values.OrderByDescending(i => i).Aggregate((a, b) => (ushort)(a - b));
         }

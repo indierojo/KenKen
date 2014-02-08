@@ -82,13 +82,13 @@ namespace KenKenValidationTests
         {
             var groups = new List<GroupDefinition>
             {
-                new GroupDefinition(1, new NoOp(), 4),
-                new GroupDefinition(2, new Division(), 2),
-                new GroupDefinition(3, new Multiplication(), 9),
-                new GroupDefinition(4, new Multiplication(), 6),
-                new GroupDefinition(5, new Addition(), 3),
-                new GroupDefinition(6, new Subtraction(), 3),
-                new GroupDefinition(7, new Multiplication(), 24),
+                new GroupDefinition(1, OperationType.NoOp, 4),
+                new GroupDefinition(2, OperationType.Division, 2),
+                new GroupDefinition(3, OperationType.Multiplication, 9),
+                new GroupDefinition(4, OperationType.Multiplication, 6),
+                new GroupDefinition(5, OperationType.Addition, 3),
+                new GroupDefinition(6, OperationType.Subtraction, 3),
+                new GroupDefinition(7, OperationType.Multiplication, 24),
             };
             return groups;
         }

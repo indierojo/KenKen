@@ -16,7 +16,18 @@ namespace KenKenApi.Controllers
         // GET api/puzzle
         public IEnumerable<Puzzle> Get()
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
+        }
+
+        [Route("api/puzzle/random/{puzzleSize}/")]
+        [HttpGet]
+        public Puzzle Random(int puzzleSize)
+        {
+            if (puzzleSize < 3 || puzzleSize > 9)
+            {
+                throw new ArgumentOutOfRangeException("puzzleSize", "Puzzle size must be within 3 and 9!");
+            }
+            return new KenKenPuzzleBuilder().Build(DifficultyLevel.Easy, (GridSize)puzzleSize);
         }
 
         // GET api/puzzle/5
@@ -30,20 +41,17 @@ namespace KenKenApi.Controllers
             return new SimpleKenKenPuzzleBuilder().Build(DifficultyLevel.Easy, GridSize.FourByFour);
         }
 
-        // POST api/puzzle/5/check
-        [Route("api/puzzle/{puzzleId}/check")]
+        // POST api/puzzle/check
+        [Route("api/puzzle/check")]
         [HttpPost]
-        public ValidationResult Check(int puzzleId, [FromBody]Cell[][] submittedAnswer)
+        public ValidationResult Check([FromBody]Puzzle submittedAnswer)
         {
             if (submittedAnswer == null)
             {
                 throw new ArgumentException("Could not parse values into expected format.");
             }
 
-            var puzzleDefinition = Get(puzzleId);
-            var puzzleToCheck = new Puzzle(submittedAnswer, puzzleDefinition.Groups);
-
-            return PuzzleValidationService.CheckForValidity(puzzleToCheck);
+            return PuzzleValidationService.CheckForValidity(submittedAnswer);
         }
         // POST api/puzzle
         public void Post([FromBody]Puzzle value)
