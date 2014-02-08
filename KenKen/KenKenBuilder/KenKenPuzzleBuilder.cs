@@ -25,7 +25,7 @@ namespace KenKenBuilder
             return new Puzzle(grid, groupDefinitions);
         }
 
-        private GroupDefinition BuildGroupDef(ushort groupNumber, DifficultyLevel difficultyLevel, GridSize gridSize, IEnumerable<Cell> cellGroup, Cell[][] grid,
+        private static GroupDefinition BuildGroupDef(ushort groupNumber, DifficultyLevel difficultyLevel, GridSize gridSize, IEnumerable<Cell> cellGroup, Cell[][] grid,
             int[,] board)
         {
             var cellValues = new List<ushort>();
@@ -45,7 +45,7 @@ namespace KenKenBuilder
             return new GroupDefinition(groupNumber, operation.Type, (ushort) expectedTotal);
         }
 
-        private IOperation PickOperation(List<ushort> cellValues, int[,] board, DifficultyLevel difficultyLevel)
+        private static IOperation PickOperation(IReadOnlyList<ushort> cellValues, int[,] board, DifficultyLevel difficultyLevel)
         {
             var choices = GetPossibleOperations(cellValues, board);
             //TODO pick based on difficulty
@@ -54,7 +54,7 @@ namespace KenKenBuilder
             return randomizedChoices.First();
         }
 
-        private IEnumerable<IOperation> GetPossibleOperations(List<ushort> cellValues, int[,] board)
+        private static IEnumerable<IOperation> GetPossibleOperations(IReadOnlyList<ushort> cellValues, int[,] board)
         {
             if (cellValues.Count == 1)
             {
@@ -73,7 +73,7 @@ namespace KenKenBuilder
             return possibleOperations;
         }
 
-        private bool AreEvenlyDivisible(ushort value, ushort value1)
+        private static bool AreEvenlyDivisible(ushort value, ushort value1)
         {
             if (value > value1)
             {
@@ -83,7 +83,7 @@ namespace KenKenBuilder
             return (value1%value) == 0;
         }
 
-        private Normal CreateDistribution(int boardSize)
+        private static Normal CreateDistribution(int boardSize)
         {
             var size = (double)boardSize;
             var mean = Math.Ceiling(size/2);
