@@ -17,8 +17,7 @@ kenkenControllers.controller('kenkenController', ['$scope', '$http', '$location'
 
     $http.get('http://localhost:63995/api/puzzle/random/' + puzzleSize).success(function (data) {
         populateCellBorderData(data);
-        kenkenControllers.Groups = data.Groups;
-
+        populateSymbolData(data);
         $scope.puzzle = data;
     });
     
@@ -63,19 +62,22 @@ kenkenControllers.controller('kenkenController', ['$scope', '$http', '$location'
         });
     };
 }]);
-kenkenControllers.filter('groupSymbol', function () {
-    return function (groupNumber) {
-        var symbol = "";
-        kenkenControllers.Groups.forEach(function (group) {
-            if (group.Group === groupNumber) {
-                symbol = group.ExpectedTotal + group.Symbol;
-                group.symbolShown = true;
-                return;
-            }
+
+var populateSymbolData = function(data) {
+    var groups = data.Groups;
+    var cellGrid = data.Grid.Cells;
+
+    cellGrid.forEach(function (row) {
+        row.forEach(function(cell) {
+            groups.forEach(function (group) {
+                if (group.Group === cell.Group) {
+                    cell.Symbol = group.ExpectedTotal + group.Symbol;
+                    return;
+                }
+            });
         });
-        return symbol;
-    };
-});
+    });
+};
 
 var populateCellBorderData = function(data) {
     var gridSize = data.Grid.Cells.length;
@@ -90,9 +92,6 @@ var populateCellBorderData = function(data) {
                 seenGroups.push(cell.Group);
                 cell.showSymbol = true;
             }
-
-            // cell.x = x;
-            // cell.y = y;
 
             if (x > 0 && cells[x - 1][y].Group !== cell.Group) {
                 cell.topBorder = true;
