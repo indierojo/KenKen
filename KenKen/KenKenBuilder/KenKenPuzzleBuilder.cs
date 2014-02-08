@@ -20,15 +20,12 @@ namespace KenKenBuilder
             var grid = new Cell[(int) gridSize][];
 
             ushort groupNumber = 1;
-            var groupDefinitions = groups.Select(cellGroup =>
-            {
-                return BuildGroupDef(groupNumber++, difficultyLevel, gridSize, cellGroup, grid, board);
-            } );
+            var groupDefinitions = groups.Select(cellGroup => BuildGroupDef(groupNumber++, difficultyLevel, gridSize, cellGroup, grid, board));
 
             return new Puzzle(grid, groupDefinitions);
         }
 
-        private GroupDefinition BuildGroupDef(ushort groupNumber, DifficultyLevel difficultyLevel, GridSize gridSize, List<Cell> cellGroup, Cell[][] grid,
+        private GroupDefinition BuildGroupDef(ushort groupNumber, DifficultyLevel difficultyLevel, GridSize gridSize, IEnumerable<Cell> cellGroup, Cell[][] grid,
             int[,] board)
         {
             var cellValues = new List<ushort>();
@@ -88,17 +85,9 @@ namespace KenKenBuilder
 
         private Normal CreateDistribution(int boardSize)
         {
-            // 3 => 2
-            // 6 => 3
-            // 9 => 4
-            var mean = Math.Ceiling((double) (boardSize/2));
-//            var mean = 4;
-            
-            // 3 => 1
-            // 6 => 2
-            // 9 => 3
-            var stdDev = Math.Sqrt(Math.Floor((double)(boardSize / 3)));
-//            var stdDev = 1;
+            var size = (double)boardSize;
+            var mean = Math.Ceiling(size/2);
+            var stdDev = Math.Sqrt(Math.Floor(size/3));
             return new Normal(mean, stdDev);
         }
 
