@@ -2,7 +2,8 @@
 
 var kenkenApp = angular.module('kenkenApp', [
     'kenkenControllers',
-    'kenkenDirectives'
+    'kenkenDirectives',
+    'kenkenServices'
 ]);
 
 kenkenApp.config([

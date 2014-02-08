@@ -2,66 +2,69 @@
 
 var kenkenControllers = angular.module('kenkenControllers', []);
 
-kenkenControllers.controller('kenkenController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+kenkenControllers.controller('kenkenController', [
+    '$scope', '$location', 'Puzzle',
+    function($scope, $location, Puzzle) {
 
-    var puzzleSize = 3;
-    if ($location.path()) {
-        var parsedPuzzleSize = parseInt($location.path().replace("/", ""));
-        if (typeof parsedPuzzleSize == 'number') {
-            puzzleSize = parsedPuzzleSize;
-        }
-    }
-
-    $scope.puzzleSize = puzzleSize;
-    $scope.showErrors = false;
-
-    $http.get('http://localhost:63995/api/puzzle/random/' + puzzleSize).success(function (data) {
-        populateCellBorderData(data);
-        populateSymbolData(data);
-        $scope.puzzle = data;
-    });
-    
-    $scope.selectCell = function (cell) {
-        $scope.selectedCell = cell;
-    };
-
-    $scope.isSelected = function (cell) {
-        return $scope.selectedCell === cell;
-    };
-
-    $scope.deselectAllCells = function() {
-        return $scope.selectedCell = null;
-    };
-
-    $scope.resetPuzzle = function () {
-        $scope.puzzle.Grid.Cells.forEach(function (row) {
-            row.forEach(function(cell) {
-                cell.Value = null;
-            });
-        });
-        $scope.puzzleErrors = null;
-        $scope.information = null;
-        $scope.isSolved = null;
-        $scope.hasErrors = null;
-    };
-
-    $scope.checkSolution = function () {
-        $scope.information = "Checking puzzle solution...";
-        $scope.isSolved = null;
-        $scope.hasErrors = null;
-        $scope.puzzleErrors = null;
-
-        $http.post('http://localhost:63995/api/puzzle/check', $scope.puzzle).success(function (data) {
-            $scope.information = null;
-            if (data.WasValid) {
-                $scope.isSolved = true;
-            } else {
-                $scope.hasErrors = true;
-                $scope.puzzleErrors = data.FailureReason.split('\n');
+        var puzzleSize = 3;
+        if ($location.path()) {
+            var parsedPuzzleSize = parseInt($location.path().replace("/", ""));
+            if (typeof parsedPuzzleSize == 'number') {
+                puzzleSize = parsedPuzzleSize;
             }
+        }
+
+        $scope.puzzleSize = puzzleSize;
+        Puzzle.random(puzzleSize).success(function(puzzle) {
+            populateCellBorderData(puzzle);
+            populateSymbolData(puzzle);
+            $scope.puzzle = puzzle;
         });
-    };
-}]);
+        $scope.showErrors = false;
+
+        $scope.selectCell = function(cell) {
+            $scope.selectedCell = cell;
+        };
+
+        $scope.isSelected = function(cell) {
+            return $scope.selectedCell === cell;
+        };
+
+        $scope.deselectAllCells = function() {
+            return $scope.selectedCell = null;
+        };
+
+        $scope.resetPuzzle = function() {
+            $scope.puzzle.Grid.Cells.forEach(function(row) {
+                row.forEach(function(cell) {
+                    cell.Value = null;
+                });
+            });
+            $scope.puzzleErrors = null;
+            $scope.information = null;
+            $scope.isSolved = null;
+            $scope.hasErrors = null;
+        };
+
+        $scope.checkSolution = function() {
+            $scope.information = "Checking puzzle solution...";
+            $scope.isSolved = null;
+            $scope.hasErrors = null;
+            $scope.puzzleErrors = null;
+
+            var puzzle = $scope.puzzle;
+            Puzzle.check(puzzle).success(function (checkResult) {
+                $scope.information = null;
+                if (checkResult.WasValid) {
+                    $scope.isSolved = true;
+                } else {
+                    $scope.hasErrors = true;
+                    $scope.puzzleErrors = checkResult.FailureReason.split('\n');
+                }
+            });
+        };
+    }
+]);
 
 var populateSymbolData = function(data) {
     var groups = data.Groups;
