@@ -227,11 +227,11 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\controllers.js" />
-    <Content Include="Scripts\app\directives.js" />
-    <Content Include="Scripts\app\filters.js" />
-    <Content Include="Scripts\app\services.js" />
+    <Content Include="app\app.js" />
+    <Content Include="app\controllers.js" />
+    <Content Include="app\directives.js" />
+    <Content Include="app\filters.js" />
+    <Content Include="app\services.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />
