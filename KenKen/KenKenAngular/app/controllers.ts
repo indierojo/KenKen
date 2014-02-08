@@ -15,23 +15,23 @@ kenkenControllers.controller('kenkenController', [
         }
 
         $scope.puzzleSize = puzzleSize;
-        puzzleService.random(puzzleSize).success(puzzle=> {
+        puzzleService.random(puzzleSize).success((puzzle:Puzzle)=> {
             populateCellBorderData(puzzle);
             populateSymbolData(puzzle);
             $scope.puzzle = puzzle;
         });
         $scope.showErrors = false;
 
-        $scope.selectCell = cell=> {
+        $scope.selectCell = (cell:Cell) => {
             $scope.selectedCell = cell;
         };
 
-        $scope.isSelected = cell=> $scope.selectedCell === cell;
+        $scope.isSelected = (cell: Cell)=> $scope.selectedCell === cell;
 
         $scope.deselectAllCells = ()=> $scope.selectedCell = null;
 
         $scope.resetPuzzle = ()=> {
-            $scope.puzzle.Grid.Cells.forEach(row=> {
+            $scope.puzzle.Grid.Cells.forEach((row:Cell[])=> {
                 row.forEach(cell=> {
                     cell.Value = null;
                 });
@@ -48,8 +48,8 @@ kenkenControllers.controller('kenkenController', [
             $scope.hasErrors = null;
             $scope.puzzleErrors = null;
 
-            var puzzle = $scope.puzzle;
-            puzzleService.check(puzzle).success(checkResult=> {
+            var puzzle:Puzzle = $scope.puzzle;
+            puzzleService.check(puzzle).success((checkResult: ValidationResult)=> {
                 $scope.information = null;
                 if (checkResult.WasValid) {
                     $scope.isSolved = true;
@@ -62,9 +62,9 @@ kenkenControllers.controller('kenkenController', [
     }
 ]);
 
-var populateSymbolData = data=> {
-    var groups = data.Groups;
-    var cellGrid = data.Grid.Cells;
+var populateSymbolData = (puzzle: Puzzle)=> {
+    var groups = puzzle.Groups;
+    var cellGrid = puzzle.Grid.Cells;
 
     cellGrid.forEach(row=> {
         row.forEach(cell=> {
@@ -78,11 +78,11 @@ var populateSymbolData = data=> {
     });
 };
 
-var populateCellBorderData = data=> {
-    var gridSize = data.Grid.Cells.length;
-    var seenGroups = [];
+var populateCellBorderData = (puzzle:Puzzle)=> {
+    var gridSize = puzzle.Grid.Cells.length;
+    var seenGroups:number[] =[];
 
-    var cells = data.Grid.Cells;
+    var cells = puzzle.Grid.Cells;
 
     for (var x = 0; x < gridSize; x++) {
         for (var y = 0; y < gridSize; y++) {

@@ -64,9 +64,9 @@ kenkenControllers.controller('kenkenController', [
     }
 ]);
 
-var populateSymbolData = function (data) {
-    var groups = data.Groups;
-    var cellGrid = data.Grid.Cells;
+var populateSymbolData = function (puzzle) {
+    var groups = puzzle.Groups;
+    var cellGrid = puzzle.Grid.Cells;
 
     cellGrid.forEach(function (row) {
         row.forEach(function (cell) {
@@ -80,11 +80,11 @@ var populateSymbolData = function (data) {
     });
 };
 
-var populateCellBorderData = function (data) {
-    var gridSize = data.Grid.Cells.length;
+var populateCellBorderData = function (puzzle) {
+    var gridSize = puzzle.Grid.Cells.length;
     var seenGroups = [];
 
-    var cells = data.Grid.Cells;
+    var cells = puzzle.Grid.Cells;
 
     for (var x = 0; x < gridSize; x++) {
         for (var y = 0; y < gridSize; y++) {
