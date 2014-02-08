@@ -207,6 +207,7 @@
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\controllers.ts" />
     <TypeScriptCompile Include="app\directives.ts" />
+    <TypeScriptCompile Include="app\kenkenTypes.d.ts" />
     <TypeScriptCompile Include="app\services.ts" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
