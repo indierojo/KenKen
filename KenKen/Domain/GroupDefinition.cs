@@ -53,6 +53,7 @@ namespace Domain
         public string Symbol 
         {
             get { return Operation.Symbol; }
+// ReSharper disable once ValueParameterNotUsed
             private set { /* do nothing. */ }
         }
 
