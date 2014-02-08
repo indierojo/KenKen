@@ -9,7 +9,6 @@ namespace KenKenBuilder
 {
     public class KenKenPuzzleBuilder : IKenKenPuzzleBuilder
     {
-        private static readonly Random RandomSeed = new Random();
         private static Normal _normalDistribution;
 
         public Puzzle Build(DifficultyLevel difficultyLevel, GridSize gridSize)
@@ -53,7 +52,8 @@ namespace KenKenBuilder
         {
             var choices = GetPossibleOperations(cellValues, board);
             //TODO pick based on difficulty
-            var randomizedChoices = choices.OrderBy(a => RandomSeed.Next());
+            var randomizer = new ThreadSafeRandom();
+            var randomizedChoices = choices.OrderBy(a => randomizer.Next());
             return randomizedChoices.First();
         }
 
@@ -131,7 +131,8 @@ namespace KenKenBuilder
         {
             var adjacentCells = GetAdjacentCells(cellGroup, board.GetLength(0));
             var openCells = GetOpenCells(adjacentCells, board);
-            var randomCells = openCells.OrderBy(a => RandomSeed.Next());
+            var randomizer = new ThreadSafeRandom();
+            var randomCells = openCells.OrderBy(a => randomizer.Next());
             return randomCells.FirstOrDefault();
         }
 
@@ -194,16 +195,17 @@ namespace KenKenBuilder
 
         private static void Permute(int[,] board, GridSize gridSize)
         {
-            var numOperations = RandomSeed.NextDouble()*100;
+            var randomizer = new ThreadSafeRandom();
+            var numOperations = randomizer.NextDouble()*100;
 
             for (var i = 0; i < numOperations; i++)
             {
-                var flipX = RandomSeed.NextDouble() >= 0.5;
-                var choice1 = RandomSeed.Next(0, (int) gridSize);
+                var flipX = randomizer.NextDouble() >= 0.5;
+                var choice1 = randomizer.Next(0, (int) gridSize);
                 var choice2 = choice1;
                 while (choice2 == choice1)
                 {
-                    choice2 = RandomSeed.Next(0, (int) gridSize);
+                    choice2 = randomizer.Next(0, (int) gridSize);
                 }
                 if (flipX)
                 {
