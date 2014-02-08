@@ -1,4 +1,6 @@
-var kenkenControllers = angular.module('kenkenApp', []);
+'use strict';
+
+var kenkenControllers = angular.module('kenkenControllers', []);
 
 kenkenControllers.controller('kenkenController', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
@@ -61,27 +63,6 @@ kenkenControllers.controller('kenkenController', ['$scope', '$http', '$location'
         });
     };
 }]);
-kenkenControllers.directive('ngFocusWhenSelected', function ($timeout) {
-    return function (scope, element) {
-        // 1 ms timeout required or the text within is not selected
-        $timeout(function() {
-            element[0].select();
-        }, 1);
-    };
-});
-kenkenControllers.directive('ngEnter', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if (event.which === 13) {
-                scope.$apply(function () {
-                    scope.$eval(attrs.ngEnter);
-                });
-
-                event.preventDefault();
-            }
-        });
-    };
-});
 kenkenControllers.filter('groupSymbol', function () {
     return function (groupNumber) {
         var symbol = "";
