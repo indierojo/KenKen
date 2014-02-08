@@ -204,7 +204,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\kenken.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -227,11 +227,11 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\controllers.js" />
-    <Content Include="Scripts\app\directives.js" />
-    <Content Include="Scripts\app\filters.js" />
-    <Content Include="Scripts\app\services.js" />
+    <Content Include="app\app.js" />
+    <Content Include="app\controllers.js" />
+    <Content Include="app\directives.js" />
+    <Content Include="app\filters.js" />
+    <Content Include="app\services.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />
@@ -496,11 +496,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\_Home.cshtml" />
-    <Content Include="Views\Home\_Login.cshtml" />
-    <Content Include="Views\Home\_Manage.cshtml" />
-    <Content Include="Views\Home\_Register.cshtml" />
-    <Content Include="Views\Home\_RegisterExternal.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />

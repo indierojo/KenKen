@@ -19,7 +19,7 @@ namespace KenKenApi.Controllers
             throw new NotImplementedException();
         }
 
-        [Route("api/puzzle/random/{puzzleSize}/")]
+        [Route("api/puzzle/random")]
         [HttpGet]
         public Puzzle Random(int puzzleSize)
         {
