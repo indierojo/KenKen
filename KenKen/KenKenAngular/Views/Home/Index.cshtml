@@ -29,10 +29,10 @@
             <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
                 <td class="cell"
                     ng-class="{
-                            topBorder: cell.topBorder,
-                            leftBorder: cell.leftBorder,
-                            rightBorder: cell.rightBorder,
-                            bottomBorder: cell.bottomBorder
+                            topBorder: cell.isOnTopSide,
+                            leftBorder: cell.isOnLeftSide,
+                            rightBorder: cell.isOnRightSide,
+                            bottomBorder: cell.isOnBottomSide
                         }"
                     ng-repeat="cell in row"
                     ng-click="selectCell(cell)"
@@ -43,6 +43,10 @@
                     <input ng-switch-when="true"
                            ng-focus-when-selected
                            ng-enter="deselectAllCells()"
+                           ng-up-arrow="navigateUp(cell)"
+                           ng-down-arrow="navigateDown(cell)"
+                           ng-left-arrow="navigateLeft(cell)"
+                           ng-right-arrow="navigateRight(cell)"
                            ng-blur="deselectAllCells()"
                            ng-model="cell.Value">
                     <div class="cellValue" ng-switch-default>{{cell.Value}}</div>

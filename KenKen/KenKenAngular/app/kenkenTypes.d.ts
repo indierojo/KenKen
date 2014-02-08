@@ -1,12 +1,15 @@
 interface Cell {
+    X: number;
+    Y: number;
+
     Symbol: string;
     Value: number;
     Group: number;
     showSymbol: boolean;
-    leftBorder: boolean;
-    rightBorder: boolean;
-    topBorder: boolean;
-    bottomBorder: boolean;
+    isOnLeftSide: boolean;
+    isOnRightSide: boolean;
+    isOnTopSide: boolean;
+    isOnBottomSide: boolean;
 } 
 
 interface GroupDefinition {
