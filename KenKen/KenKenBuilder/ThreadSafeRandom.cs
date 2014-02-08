@@ -25,6 +25,11 @@ namespace KenKenBuilder
             return _local.Next();
         }
 
+        public int Next(int minValue, int maxValue)
+        {
+            return _local.Next(minValue, maxValue);
+        }
+
         public double NextDouble()
         {
             return _local.NextDouble();
