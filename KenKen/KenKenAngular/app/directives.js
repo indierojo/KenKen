@@ -1,5 +1,4 @@
 'use strict';
-
 var kenkenDirectives = angular.module('kenkenDirectives', []);
 
 kenkenDirectives.directive('ngFocusWhenSelected', function ($timeout) {
@@ -23,3 +22,4 @@ kenkenDirectives.directive('ngEnter', function () {
         });
     };
 });
+//# sourceMappingURL=directives.js.map

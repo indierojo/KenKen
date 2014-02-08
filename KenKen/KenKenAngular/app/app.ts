@@ -1,4 +1,5 @@
 'use strict';
+
 var kenkenApp = angular.module('kenkenApp', [
     'kenkenControllers',
     'kenkenDirectives',
@@ -6,8 +7,7 @@ var kenkenApp = angular.module('kenkenApp', [
 ]);
 
 kenkenApp.config([
-    '$httpProvider', function ($httpProvider) {
+    '$httpProvider', $httpProvider => {
         $httpProvider.defaults.useXDomain = true;
     }
 ]);
-//# sourceMappingURL=app.js.map

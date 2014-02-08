@@ -204,6 +204,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\controllers.ts" />
+    <TypeScriptCompile Include="app\directives.ts" />
+    <TypeScriptCompile Include="app\services.ts" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\kenken.css" />
@@ -229,11 +233,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="app\app.js" />
-    <Content Include="app\controllers.js" />
-    <Content Include="app\directives.js" />
     <Content Include="app\filters.js" />
-    <Content Include="app\services.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />
