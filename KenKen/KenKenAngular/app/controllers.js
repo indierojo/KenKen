@@ -1,11 +1,6 @@
-var kenkenApp = angular.module('kenkenApp', []);
+var kenkenControllers = angular.module('kenkenApp', []);
 
-kenkenApp.config([
-    '$httpProvider', function ($httpProvider) {
-        $httpProvider.defaults.useXDomain = true;
-    }
-]);
-kenkenApp.controller('kenkenApp', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+kenkenControllers.controller('kenkenApp', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
     var puzzleSize = 3;
     if ($location.path()) {
@@ -20,7 +15,7 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', '$location', function ($sc
 
     $http.get('http://localhost:63995/api/puzzle/random/' + puzzleSize).success(function (data) {
         populateCellBorderData(data);
-        kenkenApp.Groups = data.Groups;
+        kenkenControllers.Groups = data.Groups;
 
         $scope.puzzle = data;
     });
@@ -66,7 +61,7 @@ kenkenApp.controller('kenkenApp', ['$scope', '$http', '$location', function ($sc
         });
     };
 }]);
-kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
+kenkenControllers.directive('ngFocusWhenSelected', function ($timeout) {
     return function (scope, element) {
         // 1 ms timeout required or the text within is not selected
         $timeout(function() {
@@ -74,7 +69,7 @@ kenkenApp.directive('ngFocusWhenSelected', function ($timeout) {
         }, 1);
     };
 });
-kenkenApp.directive('ngEnter', function () {
+kenkenControllers.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
             if (event.which === 13) {
@@ -87,10 +82,10 @@ kenkenApp.directive('ngEnter', function () {
         });
     };
 });
-kenkenApp.filter('groupSymbol', function() {
+kenkenControllers.filter('groupSymbol', function () {
     return function (groupNumber) {
         var symbol = "";
-        kenkenApp.Groups.forEach(function(group) {
+        kenkenControllers.Groups.forEach(function (group) {
             if (group.Group === groupNumber) {
                 symbol = group.ExpectedTotal + group.Symbol;
                 group.symbolShown = true;
