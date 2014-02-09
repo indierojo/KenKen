@@ -9,6 +9,7 @@ kenkenDirectives.directive('ngFocusWhenSelected', function ($timeout) {
         }, 1);
     };
 });
+
 kenkenDirectives.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         var enterKeyCode = 13;

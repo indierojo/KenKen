@@ -4,7 +4,7 @@ var kenkenControllers = angular.module('kenkenControllers', []);
 
 kenkenControllers.controller('kenkenController', [
     '$scope', '$location', 'puzzleService',
-    ($scope, $location, puzzleService)=> {
+    ($scope: KenKenScope, $location: ng.ILocationService, puzzleService: PuzzleService)=> {
 
         var puzzleSize = 3;
         if ($location.path()) {

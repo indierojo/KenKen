@@ -2,12 +2,13 @@
 
 var kenkenDirectives = angular.module('kenkenDirectives', []);
 
-kenkenDirectives.directive('ngFocusWhenSelected', $timeout=> (scope, element)=> {
+kenkenDirectives.directive('ngFocusWhenSelected', ($timeout:ng.ITimeoutService) => (scope, element)=> {
     // 1 ms timeout required or the text within is not selected
     $timeout(()=> {
         element[0].select();
     }, 1);
 });
+
 kenkenDirectives.directive('ngEnter', () => (scope, element, attrs) => {
     var enterKeyCode: number = 13;
 
