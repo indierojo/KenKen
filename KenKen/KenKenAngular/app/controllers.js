@@ -6,8 +6,8 @@ kenkenControllers.controller('kenkenController', [
     function ($scope, $location, puzzleService) {
         var puzzleSize = 3;
         if ($location.path()) {
-            var parsedPuzzleSize = parseInt($location.path().replace("/", ""));
-            if (typeof parsedPuzzleSize == 'number') {
+            var parsedPuzzleSize = parseInt($location.path().replace("/", ""), 10);
+            if (parsedPuzzleSize) {
                 puzzleSize = parsedPuzzleSize;
             }
         }
