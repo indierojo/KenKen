@@ -105,6 +105,7 @@ input[type="checkbox"].input-validation-error {
 
 .cell input {
     outline: 2px solid steelblue;
+    -ms-outline-offset: -1px;
     outline-offset: -1px;
     font-size: 20px;
     border: none;
