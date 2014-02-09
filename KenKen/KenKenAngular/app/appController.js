@@ -32,7 +32,7 @@ appController.controller('appController', [
             var input = cell.Value;
 
             if (!input) {
-                $scope.clearValues(cell);
+                return;
             }
             var validValuesRegex = '^[1-' + $scope.puzzleSize + ']+$';
             var isValid = input.match(validValuesRegex);
