@@ -54,15 +54,6 @@
             </td>
         </tr>
     </table>
-    
-    <div id="notesPanel" ng-controller="notesController" ng-show="selectedCell">
-        <h3>Notes:</h3>
-        <ul>
-            <li>{{notes}}</li>
-            <li>Value: {{selectedCell.Value}}</li>
-            <li>Possibles: {{selectedCell.notes.possibles}}</li>
-        </ul>
-    </div>
 
     <button id="isValidButton" ng-click="checkSolution()">Check</button>
     <button id="resetButton" ng-click="resetPuzzle()">Reset</button>
