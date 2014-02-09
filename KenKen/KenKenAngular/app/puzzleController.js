@@ -8,28 +8,28 @@ puzzleController.controller('puzzleController', [
             if (cell.X === 0) {
                 return;
             }
-
+            $scope.sanitizeInput(cell);
             $scope.selectCell(getCellAt(cell.X - 1, cell.Y));
         };
         $scope.navigateDown = function (cell) {
             if (cell.X === $scope.puzzleSize - 1) {
                 return;
             }
-
+            $scope.sanitizeInput(cell);
             $scope.selectCell(getCellAt(cell.X + 1, cell.Y));
         };
         $scope.navigateLeft = function (cell) {
             if (cell.Y === 0) {
                 return;
             }
-
+            $scope.sanitizeInput(cell);
             $scope.selectCell(getCellAt(cell.X, cell.Y - 1));
         };
         $scope.navigateRight = function (cell) {
             if (cell.Y === $scope.puzzleSize - 1) {
                 return;
             }
-
+            $scope.sanitizeInput(cell);
             $scope.selectCell(getCellAt(cell.X, cell.Y + 1));
         };
 

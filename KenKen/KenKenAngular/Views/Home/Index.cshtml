@@ -38,17 +38,19 @@
                 ng-switch on="isSelected(cell)">
 
                 <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Symbol}}</div>
+                <div class="possibleValues" ng-show="cell.notes && cell.notes.possibles">{{cell.notes.possibles.join(',')}}</div>
+                <div class="alternativeValues" ng-show="cell.notes && cell.notes.alternatives">{{cell.notes.alternatives.join(',')}}</div>
 
                 <input ng-switch-when="true"
                        ng-focus-when-selected
-                       ng-enter="deselectAllCells()"
+                       ng-enter="sanitizeInput(cell)"
                        ng-up-arrow="navigateUp(cell)"
                        ng-down-arrow="navigateDown(cell)"
                        ng-left-arrow="navigateLeft(cell)"
                        ng-right-arrow="navigateRight(cell)"
-                       ng-blur="deselectAllCells()"
+                       ng-blur="sanitizeInput(cell)"
                        ng-model="cell.Value">
-                <div class="cellValue" ng-switch-default>{{cell.Value}}</div>
+                <div class="cellValue" ng-switch-default>{{cell.displayValue}}</div>
             </td>
         </tr>
     </table>
@@ -56,9 +58,9 @@
     <div id="notesPanel" ng-controller="notesController" ng-show="selectedCell">
         <h3>Notes:</h3>
         <ul>
-            <li>
-                {{notes}}
-            </li>
+            <li>{{notes}}</li>
+            <li>Value: {{selectedCell.Value}}</li>
+            <li>Possibles: {{selectedCell.notes.possibles}}</li>
         </ul>
     </div>
 

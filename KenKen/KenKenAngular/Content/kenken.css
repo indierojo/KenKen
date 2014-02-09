@@ -79,6 +79,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .cell {
+    position: relative;
     outline: 1px dotted lightgray;
     float: left;
     width: 60px;
@@ -88,6 +89,22 @@ input[type="checkbox"].input-validation-error {
 .groupLabel {
     position: absolute;
     color: gray;
+    z-index: 1;
+}
+
+.possibleValues {
+    position: absolute;
+    bottom: 1px;
+    color: lightgray;
+    text-align: center;
+}
+
+.alternativeValues {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    color: lightgray;
+    text-align: center;
 }
 
 .cellValue {
@@ -102,6 +119,7 @@ input[type="checkbox"].input-validation-error {
     -ms-outline-offset: -1px;
     outline-offset: -1px;
     font-size: 20px;
+    position: absolute;
     border: none;
     padding-top: 15px;
     padding-left: 5px;

@@ -4,9 +4,12 @@ interface AppScope extends ng.IScope {
     showErrors: boolean;
     selectedCell: Cell;
 
+    onValueChange();
+    sanitizeInput(cell: Cell);
     selectCell(cell: Cell);
     isSelected(cell: Cell): boolean;
     deselectAllCells();
+    clearValues(cell: Cell);
 
     puzzleErrors: string[];
     information: string;
@@ -25,14 +28,7 @@ interface PuzzleScope extends AppScope {
 
 interface NotesScope extends AppScope {
     notes: string;
-}
-
-interface PuzzleController extends ng.IModule {
-    
-}
-
-interface NotesController extends ng.IModule {
-    
+    cell: Cell;
 }
 
 interface PuzzleService extends ng.IServiceProvider {
@@ -40,12 +36,20 @@ interface PuzzleService extends ng.IServiceProvider {
     check(puzzle: Puzzle):ng.IHttpPromise<ValidationResult>;
 }
 
+interface Notes {
+    possibles: string[];
+    alternatives: string[];
+}
+
 interface Cell {
     X: number;
     Y: number;
 
+    notes: Notes;
+
     Symbol: string;
-    Value: number;
+    Value: string;
+    displayValue: string;
     Group: number;
     showSymbol: boolean;
     isOnLeftSide: boolean;

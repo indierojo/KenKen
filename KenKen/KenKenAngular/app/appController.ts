@@ -27,18 +27,55 @@ appController.controller('appController', [
         };
         $scope.isSelected = (cell: Cell) => $scope.selectedCell === cell;
 
+        $scope.sanitizeInput = (cell: Cell) => {
+            $scope.deselectAllCells();
+            var input = cell.Value;
+            
+            if (!input) {
+                $scope.clearValues(cell);
+            }
+            var validValuesRegex = '^[1-' + $scope.puzzleSize + ']+$';
+            var isValid = input.match(validValuesRegex);
+
+            if (input.length === 1 && isValid) {
+                cell.displayValue = input;
+                cell.notes = null;
+            } else {
+                var existingNotes: any = cell.notes || {};
+                if (isValid) {
+                    existingNotes.possibles = input.split('');
+                    cell.notes = existingNotes;
+                } else if (input[0] === '^' && input.substr(1).match(validValuesRegex)) {
+                    existingNotes.alternatives = input.substr(1).split('');
+                    cell.notes = existingNotes;
+                } else if (input.indexOf(',') !== -1 && input.replace(',','').match(validValuesRegex)) {
+                    var allValues = input.split(',');
+                    existingNotes.possibles = allValues;
+                    cell.notes = existingNotes;
+                }
+                cell.displayValue = null;
+                cell.Value = null;
+            }
+        };
+
         $scope.deselectAllCells = () => $scope.selectedCell = null;
 
         $scope.resetPuzzle = () => {
             $scope.puzzle.Grid.Cells.forEach((row:Cell[])=> {
                 row.forEach(cell=> {
-                    cell.Value = null;
+                    $scope.clearValues(cell);
                 });
             });
             $scope.puzzleErrors = null;
             $scope.information = null;
             $scope.isSolved = null;
             $scope.hasErrors = null;
+        };
+
+        $scope.clearValues = (cell: Cell) => {
+            cell.notes = null;
+            cell.Value = null;
+            cell.displayValue = null;
         };
 
         $scope.checkSolution = ()=> {
