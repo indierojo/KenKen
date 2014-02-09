@@ -13,51 +13,48 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body ng-controller="kenkenController">
-    <div id="pageWrapper">
-        <div class="info message" ng-show="information">{{information}}</div>
-        <div class="solved message" ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
-        <div class="error message" ng-show="hasErrors">
-            Whoops! There are some issues with the puzzle!
-            <span>Show Errors: <input type="checkbox" ng-model="showErrors" value="{{showErrors}}"/></span>
-        </div>
-        <div id="errorSummary" ng-show="showErrors">
-            <ul>
-                <li ng-repeat="error in puzzleErrors">{{error}}</li>
-            </ul>
-        </div>
-        <table class="puzzleOutline">
-            <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
-                <td class="cell"
-                    ng-class="{
+    <div class="info message" ng-show="information">{{information}}</div>
+    <div class="solved message" ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
+    <div class="error message" ng-show="hasErrors">
+        Whoops! There are some issues with the puzzle!
+        <span>Show Errors: <input type="checkbox" ng-model="showErrors" value="{{showErrors}}"/></span>
+    </div>
+    <div id="errorSummary" ng-show="showErrors">
+        <ul>
+            <li ng-repeat="error in puzzleErrors">{{error}}</li>
+        </ul>
+    </div>
+    <table class="puzzleOutline">
+        <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
+            <td class="cell"
+                ng-class="{
                             topBorder: cell.isOnTopSide,
                             leftBorder: cell.isOnLeftSide,
                             rightBorder: cell.isOnRightSide,
                             bottomBorder: cell.isOnBottomSide
                         }"
-                    ng-repeat="cell in row"
-                    ng-click="selectCell(cell)"
-                    ng-switch on="isSelected(cell)">
+                ng-repeat="cell in row"
+                ng-click="selectCell(cell)"
+                ng-switch on="isSelected(cell)">
 
-                    <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Symbol}}</div>
+                <div class="groupLabel" ng-show="cell.showSymbol">{{cell.Symbol}}</div>
 
-                    <input ng-switch-when="true"
-                           ng-focus-when-selected
-                           ng-enter="deselectAllCells()"
-                           ng-up-arrow="navigateUp(cell)"
-                           ng-down-arrow="navigateDown(cell)"
-                           ng-left-arrow="navigateLeft(cell)"
-                           ng-right-arrow="navigateRight(cell)"
-                           ng-blur="deselectAllCells()"
-                           ng-model="cell.Value">
-                    <div class="cellValue" ng-switch-default>{{cell.Value}}</div>
-                </td>
-            </tr>
-        </table>
+                <input ng-switch-when="true"
+                       ng-focus-when-selected
+                       ng-enter="deselectAllCells()"
+                       ng-up-arrow="navigateUp(cell)"
+                       ng-down-arrow="navigateDown(cell)"
+                       ng-left-arrow="navigateLeft(cell)"
+                       ng-right-arrow="navigateRight(cell)"
+                       ng-blur="deselectAllCells()"
+                       ng-model="cell.Value">
+                <div class="cellValue" ng-switch-default>{{cell.Value}}</div>
+            </td>
+        </tr>
+    </table>
 
-        <button id="isValidButton" ng-click="checkSolution()">Check</button>
-        <button id="resetButton" ng-click="resetPuzzle()">Reset</button>
-
-    </div>
+    <button id="isValidButton" ng-click="checkSolution()">Check</button>
+    <button id="resetButton" ng-click="resetPuzzle()">Reset</button>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/angular")
