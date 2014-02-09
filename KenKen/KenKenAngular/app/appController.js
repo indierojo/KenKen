@@ -1,7 +1,7 @@
 'use strict';
-var kenkenControllers = angular.module('kenkenControllers', []);
+var appController = angular.module('appController', []);
 
-kenkenControllers.controller('kenkenController', [
+appController.controller('appController', [
     '$scope', '$location', 'puzzleService',
     function ($scope, $location, puzzleService) {
         var puzzleSize = 3;
@@ -23,54 +23,61 @@ kenkenControllers.controller('kenkenController', [
         $scope.selectCell = function (cell) {
             $scope.selectedCell = cell;
         };
-
         $scope.isSelected = function (cell) {
             return $scope.selectedCell === cell;
+        };
+
+        $scope.sanitizeInput = function (cell) {
+            $scope.deselectAllCells();
+            var input = cell.Value;
+
+            if (!input) {
+                return;
+            }
+            var validValuesRegex = '^[1-' + $scope.puzzleSize + ']+$';
+            var isValid = input.match(validValuesRegex);
+
+            if (input.length === 1 && isValid) {
+                cell.displayValue = input;
+                cell.notes = null;
+            } else {
+                var existingNotes = cell.notes || {};
+                if (isValid) {
+                    existingNotes.possibles = input.split('');
+                    cell.notes = existingNotes;
+                } else if (input[0] === '^' && input.substr(1).match(validValuesRegex)) {
+                    existingNotes.alternatives = input.substr(1).split('');
+                    cell.notes = existingNotes;
+                } else if (input.indexOf(',') !== -1 && input.replace(',', '').match(validValuesRegex)) {
+                    var allValues = input.split(',');
+                    existingNotes.possibles = allValues;
+                    cell.notes = existingNotes;
+                }
+                cell.displayValue = null;
+                cell.Value = null;
+            }
         };
 
         $scope.deselectAllCells = function () {
             return $scope.selectedCell = null;
         };
 
-        $scope.navigateUp = function (cell) {
-            if (cell.X === 0) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X - 1, cell.Y));
-        };
-        $scope.navigateDown = function (cell) {
-            if (cell.X === puzzleSize - 1) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X + 1, cell.Y));
-        };
-        $scope.navigateLeft = function (cell) {
-            if (cell.Y === 0) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X, cell.Y - 1));
-        };
-        $scope.navigateRight = function (cell) {
-            if (cell.Y === puzzleSize - 1) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X, cell.Y + 1));
-        };
-
         $scope.resetPuzzle = function () {
             $scope.puzzle.Grid.Cells.forEach(function (row) {
                 row.forEach(function (cell) {
-                    cell.Value = null;
+                    $scope.clearValues(cell);
                 });
             });
             $scope.puzzleErrors = null;
             $scope.information = null;
             $scope.isSolved = null;
             $scope.hasErrors = null;
+        };
+
+        $scope.clearValues = function (cell) {
+            cell.notes = null;
+            cell.Value = null;
+            cell.displayValue = null;
         };
 
         $scope.checkSolution = function () {
@@ -89,19 +96,6 @@ kenkenControllers.controller('kenkenController', [
                     $scope.puzzleErrors = checkResult.FailureReason.split('\n');
                 }
             });
-        };
-
-        var getCellAt = function (x, y) {
-            var foundCell;
-            $scope.puzzle.Grid.Cells.forEach(function (row) {
-                row.forEach(function (cell) {
-                    if (cell.X === x && cell.Y === y) {
-                        foundCell = cell;
-                    }
-                });
-            });
-
-            return foundCell;
         };
 
         var populateSymbolData = function (puzzle) {
@@ -154,4 +148,4 @@ kenkenControllers.controller('kenkenController', [
         };
     }
 ]);
-//# sourceMappingURL=controllers.js.map
+//# sourceMappingURL=appController.js.map

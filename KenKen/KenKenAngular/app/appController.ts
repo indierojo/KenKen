@@ -1,10 +1,10 @@
 'use strict';
 
-var kenkenControllers = angular.module('kenkenControllers', []);
+var appController = angular.module('appController', []);
 
-kenkenControllers.controller('kenkenController', [
+appController.controller('appController', [
     '$scope', '$location', 'puzzleService',
-    ($scope: KenKenScope, $location: ng.ILocationService, puzzleService: PuzzleService)=> {
+    ($scope: AppScope, $location: ng.ILocationService, puzzleService: PuzzleService)=> {
 
         var puzzleSize = 3;
         if ($location.path()) {
@@ -22,53 +22,60 @@ kenkenControllers.controller('kenkenController', [
         });
         $scope.showErrors = false;
 
-        $scope.selectCell = (cell:Cell) => {
+        $scope.selectCell = (cell: Cell) => {
             $scope.selectedCell = cell;
         };
+        $scope.isSelected = (cell: Cell) => $scope.selectedCell === cell;
 
-        $scope.isSelected = (cell: Cell)=> $scope.selectedCell === cell;
+        $scope.sanitizeInput = (cell: Cell) => {
+            $scope.deselectAllCells();
+            var input = cell.Value;
+            
+            if (!input) {
+                return;
+            }
+            var validValuesRegex = '^[1-' + $scope.puzzleSize + ']+$';
+            var isValid = input.match(validValuesRegex);
+
+            if (input.length === 1 && isValid) {
+                cell.displayValue = input;
+                cell.notes = null;
+            } else {
+                var existingNotes: any = cell.notes || {};
+                if (isValid) {
+                    existingNotes.possibles = input.split('');
+                    cell.notes = existingNotes;
+                } else if (input[0] === '^' && input.substr(1).match(validValuesRegex)) {
+                    existingNotes.alternatives = input.substr(1).split('');
+                    cell.notes = existingNotes;
+                } else if (input.indexOf(',') !== -1 && input.replace(',','').match(validValuesRegex)) {
+                    var allValues = input.split(',');
+                    existingNotes.possibles = allValues;
+                    cell.notes = existingNotes;
+                }
+                cell.displayValue = null;
+                cell.Value = null;
+            }
+        };
 
         $scope.deselectAllCells = () => $scope.selectedCell = null;
 
-        $scope.navigateUp = (cell: Cell) => {
-            if (cell.X === 0) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X - 1, cell.Y));
-        };
-        $scope.navigateDown = (cell: Cell)=> {
-            if (cell.X === puzzleSize - 1) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X + 1, cell.Y));
-        };
-        $scope.navigateLeft = (cell: Cell)=> {
-            if (cell.Y === 0) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X, cell.Y - 1));
-        };
-        $scope.navigateRight = (cell: Cell)=> {
-            if (cell.Y === puzzleSize - 1) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X, cell.Y + 1));
-        };
-
-        $scope.resetPuzzle = ()=> {
+        $scope.resetPuzzle = () => {
             $scope.puzzle.Grid.Cells.forEach((row:Cell[])=> {
                 row.forEach(cell=> {
-                    cell.Value = null;
+                    $scope.clearValues(cell);
                 });
             });
             $scope.puzzleErrors = null;
             $scope.information = null;
             $scope.isSolved = null;
             $scope.hasErrors = null;
+        };
+
+        $scope.clearValues = (cell: Cell) => {
+            cell.notes = null;
+            cell.Value = null;
+            cell.displayValue = null;
         };
 
         $scope.checkSolution = ()=> {
@@ -87,19 +94,6 @@ kenkenControllers.controller('kenkenController', [
                     $scope.puzzleErrors = checkResult.FailureReason.split('\n');
                 }
             });
-        };
-
-        var getCellAt = (x: number, y: number): Cell => {
-            var foundCell: Cell;
-            $scope.puzzle.Grid.Cells.forEach((row: Cell[])=> {
-                row.forEach((cell: Cell)=> {
-                    if (cell.X === x && cell.Y === y) {
-                        foundCell = cell;
-                    }
-                });
-            });
-
-            return foundCell;
         };
 
         var populateSymbolData = (puzzle: Puzzle) => {

@@ -15,7 +15,9 @@ namespace KenKenAngular
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/app/app.js",
-                "~/app/controllers.js",
+                "~/app/appController.js",
+                "~/app/puzzleController.js",
+                "~/app/notesController.js",
                 "~/app/directives.js",
                 "~/app/filters.js",
                 "~/app/services.js"));
