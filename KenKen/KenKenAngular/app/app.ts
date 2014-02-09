@@ -1,7 +1,9 @@
 'use strict';
 
 var kenkenApp = angular.module('kenkenApp', [
-    'kenkenControllers',
+    'appController',
+    'puzzleController',
+    'notesController',
     'kenkenDirectives',
     'kenkenServices'
 ]);

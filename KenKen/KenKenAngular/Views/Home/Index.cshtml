@@ -12,7 +12,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body ng-controller="kenkenController">
+<body ng-controller="appController">
     <div class="info message" ng-show="information">{{information}}</div>
     <div class="solved message" ng-show="isSolved">Congratulations! You have solved the puzzle!</div>
     <div class="error message" ng-show="hasErrors">
@@ -24,7 +24,7 @@
             <li ng-repeat="error in puzzleErrors">{{error}}</li>
         </ul>
     </div>
-    <table class="puzzleOutline">
+    <table class="puzzleOutline" ng-controller="puzzleController">
         <tr class="puzzleRow" ng-repeat="row in puzzle.Grid.Cells">
             <td class="cell"
                 ng-class="{
@@ -52,6 +52,10 @@
             </td>
         </tr>
     </table>
+    
+    <div id="notesPanel" ng-controller="notesController" ng-show="selectedCell">
+        {{notes}}
+    </div>
 
     <button id="isValidButton" ng-click="checkSolution()">Check</button>
     <button id="resetButton" ng-click="resetPuzzle()">Reset</button>

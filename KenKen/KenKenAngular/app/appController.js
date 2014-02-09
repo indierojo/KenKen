@@ -1,11 +1,9 @@
 'use strict';
+var appController = angular.module('appController', []);
 
-var kenkenControllers = angular.module('kenkenControllers', []);
-
-kenkenControllers.controller('kenkenController', [
+appController.controller('appController', [
     '$scope', '$location', 'puzzleService',
-    ($scope: KenKenScope, $location: ng.ILocationService, puzzleService: PuzzleService)=> {
-
+    function ($scope, $location, puzzleService) {
         var puzzleSize = 3;
         if ($location.path()) {
             var parsedPuzzleSize = parseInt($location.path().replace("/", ""), 10);
@@ -15,53 +13,27 @@ kenkenControllers.controller('kenkenController', [
         }
 
         $scope.puzzleSize = puzzleSize;
-        puzzleService.random(puzzleSize).success((puzzle:Puzzle)=> {
+        puzzleService.random(puzzleSize).success(function (puzzle) {
             populateCellBorderData(puzzle);
             populateSymbolData(puzzle);
             $scope.puzzle = puzzle;
         });
         $scope.showErrors = false;
 
-        $scope.selectCell = (cell:Cell) => {
+        $scope.selectCell = function (cell) {
             $scope.selectedCell = cell;
         };
-
-        $scope.isSelected = (cell: Cell)=> $scope.selectedCell === cell;
-
-        $scope.deselectAllCells = () => $scope.selectedCell = null;
-
-        $scope.navigateUp = (cell: Cell) => {
-            if (cell.X === 0) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X - 1, cell.Y));
-        };
-        $scope.navigateDown = (cell: Cell)=> {
-            if (cell.X === puzzleSize - 1) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X + 1, cell.Y));
-        };
-        $scope.navigateLeft = (cell: Cell)=> {
-            if (cell.Y === 0) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X, cell.Y - 1));
-        };
-        $scope.navigateRight = (cell: Cell)=> {
-            if (cell.Y === puzzleSize - 1) {
-                return;
-            }
-
-            $scope.selectCell(getCellAt(cell.X, cell.Y + 1));
+        $scope.isSelected = function (cell) {
+            return $scope.selectedCell === cell;
         };
 
-        $scope.resetPuzzle = ()=> {
-            $scope.puzzle.Grid.Cells.forEach((row:Cell[])=> {
-                row.forEach(cell=> {
+        $scope.deselectAllCells = function () {
+            return $scope.selectedCell = null;
+        };
+
+        $scope.resetPuzzle = function () {
+            $scope.puzzle.Grid.Cells.forEach(function (row) {
+                row.forEach(function (cell) {
                     cell.Value = null;
                 });
             });
@@ -71,14 +43,14 @@ kenkenControllers.controller('kenkenController', [
             $scope.hasErrors = null;
         };
 
-        $scope.checkSolution = ()=> {
+        $scope.checkSolution = function () {
             $scope.information = "Checking puzzle solution...";
             $scope.isSolved = null;
             $scope.hasErrors = null;
             $scope.puzzleErrors = null;
 
-            var puzzle:Puzzle = $scope.puzzle;
-            puzzleService.check(puzzle).success((checkResult: ValidationResult)=> {
+            var puzzle = $scope.puzzle;
+            puzzleService.check(puzzle).success(function (checkResult) {
                 $scope.information = null;
                 if (checkResult.WasValid) {
                     $scope.isSolved = true;
@@ -89,26 +61,13 @@ kenkenControllers.controller('kenkenController', [
             });
         };
 
-        var getCellAt = (x: number, y: number): Cell => {
-            var foundCell: Cell;
-            $scope.puzzle.Grid.Cells.forEach((row: Cell[])=> {
-                row.forEach((cell: Cell)=> {
-                    if (cell.X === x && cell.Y === y) {
-                        foundCell = cell;
-                    }
-                });
-            });
-
-            return foundCell;
-        };
-
-        var populateSymbolData = (puzzle: Puzzle) => {
+        var populateSymbolData = function (puzzle) {
             var groups = puzzle.Groups;
             var cellGrid = puzzle.Grid.Cells;
 
-            cellGrid.forEach(row=> {
-                row.forEach(cell=> {
-                    groups.forEach(group=> {
+            cellGrid.forEach(function (row) {
+                row.forEach(function (cell) {
+                    groups.forEach(function (group) {
                         if (group.Group === cell.Group) {
                             cell.Symbol = group.ExpectedTotal + group.Symbol;
                             return;
@@ -118,9 +77,9 @@ kenkenControllers.controller('kenkenController', [
             });
         };
 
-        var populateCellBorderData = (puzzle: Puzzle) => {
+        var populateCellBorderData = function (puzzle) {
             var gridSize = puzzle.Grid.Cells.length;
-            var seenGroups: number[] = [];
+            var seenGroups = [];
 
             var cells = puzzle.Grid.Cells;
 
@@ -152,3 +111,4 @@ kenkenControllers.controller('kenkenController', [
         };
     }
 ]);
+//# sourceMappingURL=appController.js.map
