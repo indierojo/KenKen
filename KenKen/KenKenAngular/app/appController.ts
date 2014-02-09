@@ -48,7 +48,7 @@ appController.controller('appController', [
                 } else if (input[0] === '^' && input.substr(1).match(validValuesRegex)) {
                     existingNotes.alternatives = input.substr(1).split('');
                     cell.notes = existingNotes;
-                } else if (input.indexOf(',') !== -1 && input.replace(',','').match(validValuesRegex)) {
+                } else if (input.indexOf(',') !== -1 && input.split(',').join('').match(validValuesRegex)) {
                     var allValues = input.split(',');
                     existingNotes.possibles = allValues;
                     cell.notes = existingNotes;
