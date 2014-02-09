@@ -5,9 +5,3 @@ var kenkenApp = angular.module('kenkenApp', [
     'kenkenDirectives',
     'kenkenServices'
 ]);
-
-kenkenApp.config([
-    '$httpProvider', $httpProvider => {
-        $httpProvider.defaults.useXDomain = true;
-    }
-]);
