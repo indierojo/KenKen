@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 5%;
+    padding-left: 5%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -54,12 +54,6 @@ input[type="checkbox"].input-validation-error {
     }
 }
 
-
-#pageWrapper {
-    width: 800px;
-    margin: auto;
-}
-
 .message {
     font-size: 16px;
 }
@@ -105,6 +99,7 @@ input[type="checkbox"].input-validation-error {
 
 .cell input {
     outline: 2px solid steelblue;
+    -ms-outline-offset: -1px;
     outline-offset: -1px;
     font-size: 20px;
     border: none;
