@@ -142,3 +142,9 @@ button {
     outline: 1px solid tomato;
     background: tomato;
 }
+
+#notesPanel {
+    float: right; 
+    padding-right: 5%;
+    border: 1px solid black;
+}
